@@ -4,7 +4,7 @@
     "type": "library",
     "license": "MIT",
     "keywords": ["dotypos", "pos", "sdk", "api"],
-    "homepage": "https://github.com/bugmadman/dotypos",
+    "homepage": "https://github.com/bugmadman/dotypos-sdk",
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
