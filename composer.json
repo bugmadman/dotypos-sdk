@@ -18,11 +18,11 @@
         }
     ],
     "require": {
-        "php": ">=8.0",
-        "symfony/validator": "6.0.*",
-        "symfony/http-client": "^6.0",
-        "symfony/serializer": "^6.0",
-        "symfony/property-access": "^6.0",
-        "phpdocumentor/reflection-docblock": "^5.3"
+        "php": ">=8.2",
+        "symfony/validator": "^7.4",
+        "symfony/http-client": "^7.4",
+        "symfony/serializer": "^7.4",
+        "symfony/property-info": "^7.4",
+        "phpdocumentor/reflection-docblock": "^6.0"
     }
 }
