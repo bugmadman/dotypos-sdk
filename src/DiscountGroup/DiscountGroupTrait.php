@@ -1,12 +1,12 @@
 <?php
 
-namespace BMM\Dotypos\DiscountGroup;
+namespace BMM\DotyposSdk\DiscountGroup;
 
-use BMM\Dotypos\DiscountGroup\DTO\DiscountGroupDTO;
-use BMM\Dotypos\DiscountGroup\DTO\DiscountGroupsDTO;
-use BMM\Dotypos\DiscountGroup\ValueObject\DiscountGroupVO;
-use BMM\Dotypos\Infrastructure\HttpClient\ValueObject\PaginationVO;
-use BMM\Dotypos\Infrastructure\HttpClient\ValueObject\RequestVO;
+use BMM\DotyposSdk\DiscountGroup\DTO\DiscountGroupDTO;
+use BMM\DotyposSdk\DiscountGroup\DTO\DiscountGroupsDTO;
+use BMM\DotyposSdk\DiscountGroup\ValueObject\DiscountGroupVO;
+use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\PaginationVO;
+use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\RequestVO;
 
 trait DiscountGroupTrait
 {

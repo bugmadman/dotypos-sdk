@@ -1,8 +1,8 @@
 <?php
 
-namespace BMM\Dotypos\Customer\ValueObject;
+namespace BMM\DotyposSdk\Customer\ValueObject;
 
-use BMM\Dotypos\Infrastructure\ValueObject\ValueObject;
+use BMM\DotyposSdk\Infrastructure\ValueObject\ValueObject;
 use Symfony\Component\Validator\Constraints as Assert;
 
 final class CustomerVO extends ValueObject

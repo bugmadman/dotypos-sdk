@@ -1,9 +1,9 @@
 <?php
 
-namespace BMM\Dotypos\Order\DTO;
+namespace BMM\DotyposSdk\Order\DTO;
 
-use BMM\Dotypos\Infrastructure\DTO\DTO;
-use BMM\Dotypos\Infrastructure\Trait\PaginationTraitDTO;
+use BMM\DotyposSdk\Infrastructure\DTO\DTO;
+use BMM\DotyposSdk\Infrastructure\Trait\PaginationTraitDTO;
 
 final class OrdersDTO extends DTO
 {

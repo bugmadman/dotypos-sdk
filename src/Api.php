@@ -1,19 +1,19 @@
 <?php
 
-namespace BMM\Dotypos;
+namespace BMM\DotyposSdk;
 
-use BMM\Dotypos\Branch\BranchTrait;
-use BMM\Dotypos\Customer\CustomerTrait;
-use BMM\Dotypos\DiscountGroup\DiscountGroupTrait;
-use BMM\Dotypos\Infrastructure\DataTransformer\DeserializerTrait;
-use BMM\Dotypos\Infrastructure\DataTransformer\SerializerTrait;
-use BMM\Dotypos\Infrastructure\HttpClient\HttpClient;
-use BMM\Dotypos\Order\OrderTrait;
-use BMM\Dotypos\OrderItem\OrderItemTrait;
-use BMM\Dotypos\Reservation\ReservationTrait;
-use BMM\Dotypos\Table\TableTrait;
-use BMM\Dotypos\Warehouse\WarehouseTrait;
-use BMM\Dotypos\Webhook\WebhookTrait;
+use BMM\DotyposSdk\Branch\BranchTrait;
+use BMM\DotyposSdk\Customer\CustomerTrait;
+use BMM\DotyposSdk\DiscountGroup\DiscountGroupTrait;
+use BMM\DotyposSdk\Infrastructure\DataTransformer\DeserializerTrait;
+use BMM\DotyposSdk\Infrastructure\DataTransformer\SerializerTrait;
+use BMM\DotyposSdk\Infrastructure\HttpClient\HttpClient;
+use BMM\DotyposSdk\Order\OrderTrait;
+use BMM\DotyposSdk\OrderItem\OrderItemTrait;
+use BMM\DotyposSdk\Reservation\ReservationTrait;
+use BMM\DotyposSdk\Table\TableTrait;
+use BMM\DotyposSdk\Warehouse\WarehouseTrait;
+use BMM\DotyposSdk\Webhook\WebhookTrait;
 
 final class Api
 {

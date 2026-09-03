@@ -1,6 +1,6 @@
 <?php
 
-namespace BMM\Dotypos\Infrastructure\DataTransformer;
+namespace BMM\DotyposSdk\Infrastructure\DataTransformer;
 
 use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
 use Symfony\Component\PropertyInfo\PropertyInfoExtractor;

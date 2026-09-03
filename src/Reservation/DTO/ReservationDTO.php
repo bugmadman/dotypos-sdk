@@ -1,8 +1,8 @@
 <?php
 
-namespace BMM\Dotypos\Reservation\DTO;
+namespace BMM\DotyposSdk\Reservation\DTO;
 
-use BMM\Dotypos\Infrastructure\DTO\DTO;
+use BMM\DotyposSdk\Infrastructure\DTO\DTO;
 
 final class ReservationDTO extends DTO
 {

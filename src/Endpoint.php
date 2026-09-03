@@ -1,6 +1,6 @@
 <?php
 
-namespace BMM\Dotypos;
+namespace BMM\DotyposSdk;
 
 final class Endpoint
 {

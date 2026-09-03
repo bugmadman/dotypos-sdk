@@ -1,9 +1,9 @@
 <?php
 
-namespace BMM\Dotypos\DiscountGroup\DTO;
+namespace BMM\DotyposSdk\DiscountGroup\DTO;
 
-use BMM\Dotypos\Infrastructure\DTO\DTO;
-use BMM\Dotypos\Infrastructure\Trait\PaginationTraitDTO;
+use BMM\DotyposSdk\Infrastructure\DTO\DTO;
+use BMM\DotyposSdk\Infrastructure\Trait\PaginationTraitDTO;
 
 final class DiscountGroupsDTO extends DTO
 {

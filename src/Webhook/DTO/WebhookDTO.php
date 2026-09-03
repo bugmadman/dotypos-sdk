@@ -1,6 +1,6 @@
 <?php
 
-namespace BMM\Dotypos\Webhook\DTO;
+namespace BMM\DotyposSdk\Webhook\DTO;
 
 final class WebhookDTO
 {

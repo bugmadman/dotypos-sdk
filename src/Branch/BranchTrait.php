@@ -1,10 +1,10 @@
 <?php
 
-namespace BMM\Dotypos\Branch;
+namespace BMM\DotyposSdk\Branch;
 
-use BMM\Dotypos\Branch\DTO\BranchesDTO;
-use BMM\Dotypos\Infrastructure\HttpClient\ValueObject\PaginationVO;
-use BMM\Dotypos\Infrastructure\HttpClient\ValueObject\RequestVO;
+use BMM\DotyposSdk\Branch\DTO\BranchesDTO;
+use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\PaginationVO;
+use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\RequestVO;
 
 trait BranchTrait
 {

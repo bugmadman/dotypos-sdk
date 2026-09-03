@@ -1,15 +1,15 @@
 <?php
 
-namespace BMM\Dotypos\Infrastructure\HttpClient;
+namespace BMM\DotyposSdk\Infrastructure\HttpClient;
 
 
-use BMM\Dotypos\Infrastructure\DataTransformer\DenormalizeTrait;
-use BMM\Dotypos\Infrastructure\DataTransformer\DeserializerTrait;
-use BMM\Dotypos\Infrastructure\HttpClient\DTO\ConnectExceptionDTO;
-use BMM\Dotypos\Infrastructure\HttpClient\DTO\HeaderDTO;
-use BMM\Dotypos\Infrastructure\HttpClient\DTO\ResponseDTO;
-use BMM\Dotypos\Infrastructure\HttpClient\DTO\ViolationsExceptionDTO;
-use BMM\Dotypos\Infrastructure\HttpClient\ValueObject\AuthorizationRequestVO;
+use BMM\DotyposSdk\Infrastructure\DataTransformer\DenormalizeTrait;
+use BMM\DotyposSdk\Infrastructure\DataTransformer\DeserializerTrait;
+use BMM\DotyposSdk\Infrastructure\HttpClient\DTO\ConnectExceptionDTO;
+use BMM\DotyposSdk\Infrastructure\HttpClient\DTO\HeaderDTO;
+use BMM\DotyposSdk\Infrastructure\HttpClient\DTO\ResponseDTO;
+use BMM\DotyposSdk\Infrastructure\HttpClient\DTO\ViolationsExceptionDTO;
+use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\AuthorizationRequestVO;
 
 final class HttpClient
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace BMM\Dotypos\Customer;
+namespace BMM\DotyposSdk\Customer;
 
-use BMM\Dotypos\Customer\DTO\CustomerDTO;
-use BMM\Dotypos\Customer\DTO\CustomersDTO;
-use BMM\Dotypos\Customer\ValueObject\CustomerVO;
-use BMM\Dotypos\Infrastructure\HttpClient\ValueObject\PaginationVO;
-use BMM\Dotypos\Infrastructure\HttpClient\ValueObject\RequestVO;
+use BMM\DotyposSdk\Customer\DTO\CustomerDTO;
+use BMM\DotyposSdk\Customer\DTO\CustomersDTO;
+use BMM\DotyposSdk\Customer\ValueObject\CustomerVO;
+use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\PaginationVO;
+use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\RequestVO;
 
 trait CustomerTrait
 {

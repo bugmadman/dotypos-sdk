@@ -1,6 +1,6 @@
 <?php
 
-namespace BMM\Dotypos\Authorization\DTO;
+namespace BMM\DotyposSdk\Authorization\DTO;
 
 final class AccessTokenDTO
 {

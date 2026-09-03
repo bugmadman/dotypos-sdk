@@ -1,6 +1,6 @@
 <?php
 
-namespace BMM\Dotypos\Infrastructure\DataTransformer;
+namespace BMM\DotyposSdk\Infrastructure\DataTransformer;
 
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;

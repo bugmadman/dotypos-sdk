@@ -1,11 +1,11 @@
 <?php
 
-namespace BMM\Dotypos\OrderItem;
+namespace BMM\DotyposSdk\OrderItem;
 
-use BMM\Dotypos\Infrastructure\HttpClient\ValueObject\PaginationVO;
-use BMM\Dotypos\Infrastructure\HttpClient\ValueObject\RequestVO;
-use BMM\Dotypos\OrderItem\DTO\OrderItemDTO;
-use BMM\Dotypos\OrderItem\DTO\OrderItemsDTO;
+use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\PaginationVO;
+use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\RequestVO;
+use BMM\DotyposSdk\OrderItem\DTO\OrderItemDTO;
+use BMM\DotyposSdk\OrderItem\DTO\OrderItemsDTO;
 
 trait OrderItemTrait
 {

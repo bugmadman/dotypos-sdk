@@ -1,6 +1,6 @@
 <?php
 
-namespace BMM\Dotypos\Infrastructure\ValueObject;
+namespace BMM\DotyposSdk\Infrastructure\ValueObject;
 
 final class ValidationException extends \Exception
 {

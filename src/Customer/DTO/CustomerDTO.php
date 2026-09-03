@@ -1,8 +1,8 @@
 <?php
 
-namespace BMM\Dotypos\Customer\DTO;
+namespace BMM\DotyposSdk\Customer\DTO;
 
-use BMM\Dotypos\Infrastructure\DTO\DTO;
+use BMM\DotyposSdk\Infrastructure\DTO\DTO;
 
 final class CustomerDTO extends DTO
 {

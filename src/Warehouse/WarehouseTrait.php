@@ -1,10 +1,10 @@
 <?php
 
-namespace BMM\Dotypos\Warehouse;
+namespace BMM\DotyposSdk\Warehouse;
 
-use BMM\Dotypos\Infrastructure\HttpClient\ValueObject\PaginationVO;
-use BMM\Dotypos\Infrastructure\HttpClient\ValueObject\RequestVO;
-use BMM\Dotypos\Warehouse\DTO\WarehousesDTO;
+use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\PaginationVO;
+use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\RequestVO;
+use BMM\DotyposSdk\Warehouse\DTO\WarehousesDTO;
 
 trait WarehouseTrait
 {

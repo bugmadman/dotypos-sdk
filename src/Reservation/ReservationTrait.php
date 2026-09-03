@@ -1,12 +1,12 @@
 <?php
 
-namespace BMM\Dotypos\Reservation;
+namespace BMM\DotyposSdk\Reservation;
 
-use BMM\Dotypos\Infrastructure\HttpClient\ValueObject\PaginationVO;
-use BMM\Dotypos\Infrastructure\HttpClient\ValueObject\RequestVO;
-use BMM\Dotypos\Reservation\DTO\ReservationDTO;
-use BMM\Dotypos\Reservation\DTO\ReservationsDTO;
-use BMM\Dotypos\Reservation\ValueObject\ReservationVO;
+use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\PaginationVO;
+use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\RequestVO;
+use BMM\DotyposSdk\Reservation\DTO\ReservationDTO;
+use BMM\DotyposSdk\Reservation\DTO\ReservationsDTO;
+use BMM\DotyposSdk\Reservation\ValueObject\ReservationVO;
 
 trait ReservationTrait
 {

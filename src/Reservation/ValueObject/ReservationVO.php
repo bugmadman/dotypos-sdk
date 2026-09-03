@@ -1,8 +1,8 @@
 <?php
 
-namespace BMM\Dotypos\Reservation\ValueObject;
+namespace BMM\DotyposSdk\Reservation\ValueObject;
 
-use BMM\Dotypos\Infrastructure\ValueObject\ValueObject;
+use BMM\DotyposSdk\Infrastructure\ValueObject\ValueObject;
 
 final class ReservationVO extends ValueObject
 {

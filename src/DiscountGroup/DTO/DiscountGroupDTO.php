@@ -1,8 +1,8 @@
 <?php
 
-namespace BMM\Dotypos\DiscountGroup\DTO;
+namespace BMM\DotyposSdk\DiscountGroup\DTO;
 
-use BMM\Dotypos\Infrastructure\DTO\DTO;
+use BMM\DotyposSdk\Infrastructure\DTO\DTO;
 
 final class DiscountGroupDTO extends DTO
 {

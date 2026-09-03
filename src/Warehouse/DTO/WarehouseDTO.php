@@ -1,6 +1,6 @@
 <?php
 
-namespace BMM\Dotypos\Warehouse\DTO;
+namespace BMM\DotyposSdk\Warehouse\DTO;
 
 final class WarehouseDTO
 {

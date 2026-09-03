@@ -1,6 +1,6 @@
 <?php
 
-namespace BMM\Dotypos\Infrastructure\DataTransformer;
+namespace BMM\DotyposSdk\Infrastructure\DataTransformer;
 
 use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;

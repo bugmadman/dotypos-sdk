@@ -1,8 +1,8 @@
 <?php
 
-namespace BMM\Dotypos\Infrastructure\HttpClient\ValueObject;
+namespace BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject;
 
-use BMM\Dotypos\Infrastructure\ValueObject\ValueObject;
+use BMM\DotyposSdk\Infrastructure\ValueObject\ValueObject;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class PaginationVO extends ValueObject

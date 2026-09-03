@@ -1,10 +1,10 @@
 <?php
 
-namespace BMM\Dotypos\Webhook;
+namespace BMM\DotyposSdk\Webhook;
 
-use BMM\Dotypos\Infrastructure\HttpClient\ValueObject\RequestVO;
-use BMM\Dotypos\Webhook\DTO\WebhookDTO;
-use BMM\Dotypos\Webhook\ValueObject\WebhookVO;
+use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\RequestVO;
+use BMM\DotyposSdk\Webhook\DTO\WebhookDTO;
+use BMM\DotyposSdk\Webhook\ValueObject\WebhookVO;
 
 trait WebhookTrait
 {

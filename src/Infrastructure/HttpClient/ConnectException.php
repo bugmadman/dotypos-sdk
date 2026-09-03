@@ -1,6 +1,6 @@
 <?php
 
-namespace BMM\Dotypos\Infrastructure\HttpClient;
+namespace BMM\DotyposSdk\Infrastructure\HttpClient;
 
 class ConnectException extends \Exception
 {

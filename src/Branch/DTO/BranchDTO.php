@@ -1,6 +1,6 @@
 <?php
 
-namespace BMM\Dotypos\Branch\DTO;
+namespace BMM\DotyposSdk\Branch\DTO;
 
 final class BranchDTO
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace BMM\Dotypos\Webhook\ValueObject;
+namespace BMM\DotyposSdk\Webhook\ValueObject;
 
 final class WebhookVO
 {

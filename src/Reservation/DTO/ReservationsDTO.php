@@ -1,9 +1,9 @@
 <?php
 
-namespace BMM\Dotypos\Reservation\DTO;
+namespace BMM\DotyposSdk\Reservation\DTO;
 
-use BMM\Dotypos\Infrastructure\DTO\DTO;
-use BMM\Dotypos\Infrastructure\Trait\PaginationTraitDTO;
+use BMM\DotyposSdk\Infrastructure\DTO\DTO;
+use BMM\DotyposSdk\Infrastructure\Trait\PaginationTraitDTO;
 
 final class ReservationsDTO extends DTO
 {

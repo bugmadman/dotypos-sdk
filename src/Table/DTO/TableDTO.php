@@ -1,6 +1,6 @@
 <?php
 
-namespace BMM\Dotypos\Table\DTO;
+namespace BMM\DotyposSdk\Table\DTO;
 
 final class TableDTO
 {

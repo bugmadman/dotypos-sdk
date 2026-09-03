@@ -1,8 +1,8 @@
 <?php
 
-namespace BMM\Dotypos\DiscountGroup\ValueObject;
+namespace BMM\DotyposSdk\DiscountGroup\ValueObject;
 
-use BMM\Dotypos\Infrastructure\ValueObject\ValueObject;
+use BMM\DotyposSdk\Infrastructure\ValueObject\ValueObject;
 
 final class DiscountGroupVO extends ValueObject
 {

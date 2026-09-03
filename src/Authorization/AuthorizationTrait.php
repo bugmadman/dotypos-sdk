@@ -1,12 +1,12 @@
 <?php
 
-namespace BMM\Dotypos\Authorization;
+namespace BMM\DotyposSdk\Authorization;
 
-use BMM\Dotypos\Authorization\DTO\AccessTokenDTO;
-use BMM\Dotypos\Authorization\ValueObject\AccessTokenVO;
-use BMM\Dotypos\Authorization\ValueObject\ConnectUrlVO;
-use BMM\Dotypos\Infrastructure\DataTransformer\DeserializerTrait;
-use BMM\Dotypos\Infrastructure\HttpClient\ValueObject\AuthorizationRequestVO;
+use BMM\DotyposSdk\Authorization\DTO\AccessTokenDTO;
+use BMM\DotyposSdk\Authorization\ValueObject\AccessTokenVO;
+use BMM\DotyposSdk\Authorization\ValueObject\ConnectUrlVO;
+use BMM\DotyposSdk\Infrastructure\DataTransformer\DeserializerTrait;
+use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\AuthorizationRequestVO;
 
 trait AuthorizationTrait
 {

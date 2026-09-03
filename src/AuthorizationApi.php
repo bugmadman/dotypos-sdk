@@ -1,9 +1,9 @@
 <?php
 
-namespace BMM\Dotypos;
+namespace BMM\DotyposSdk;
 
-use BMM\Dotypos\Authorization\AuthorizationTrait;
-use BMM\Dotypos\Infrastructure\HttpClient\HttpClient;
+use BMM\DotyposSdk\Authorization\AuthorizationTrait;
+use BMM\DotyposSdk\Infrastructure\HttpClient\HttpClient;
 
 final class AuthorizationApi
 {

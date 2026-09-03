@@ -1,8 +1,8 @@
 <?php
 
-namespace BMM\Dotypos\OrderItem\DTO;
+namespace BMM\DotyposSdk\OrderItem\DTO;
 
-use BMM\Dotypos\Infrastructure\DTO\DTO;
+use BMM\DotyposSdk\Infrastructure\DTO\DTO;
 
 final class OrderItemDTO extends DTO
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace BMM\Dotypos\Infrastructure\DTO;
+namespace BMM\DotyposSdk\Infrastructure\DTO;
 
 class DTO
 {

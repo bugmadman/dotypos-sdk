@@ -1,6 +1,6 @@
 <?php
 
-namespace BMM\Dotypos\Infrastructure\HttpClient\ValueObject;
+namespace BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject;
 
 class RequestVO
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace BMM\Dotypos\Infrastructure\Trait;
+namespace BMM\DotyposSdk\Infrastructure\Trait;
 
 trait PaginationTraitDTO
 {

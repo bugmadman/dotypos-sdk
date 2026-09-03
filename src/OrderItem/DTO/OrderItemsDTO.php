@@ -1,9 +1,9 @@
 <?php
 
-namespace BMM\Dotypos\OrderItem\DTO;
+namespace BMM\DotyposSdk\OrderItem\DTO;
 
 
-use BMM\Dotypos\Infrastructure\Trait\PaginationTraitDTO;
+use BMM\DotyposSdk\Infrastructure\Trait\PaginationTraitDTO;
 
 final class OrderItemsDTO
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace BMM\Dotypos\Order\DTO;
+namespace BMM\DotyposSdk\Order\DTO;
 
-use BMM\Dotypos\Infrastructure\DTO\DTO;
+use BMM\DotyposSdk\Infrastructure\DTO\DTO;
 
 final class OrderDTO extends DTO
 {

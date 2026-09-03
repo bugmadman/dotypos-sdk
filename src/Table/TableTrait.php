@@ -1,10 +1,10 @@
 <?php
 
-namespace BMM\Dotypos\Table;
+namespace BMM\DotyposSdk\Table;
 
-use BMM\Dotypos\Infrastructure\HttpClient\ValueObject\PaginationVO;
-use BMM\Dotypos\Infrastructure\HttpClient\ValueObject\RequestVO;
-use BMM\Dotypos\Table\DTO\TablesDTO;
+use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\PaginationVO;
+use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\RequestVO;
+use BMM\DotyposSdk\Table\DTO\TablesDTO;
 
 trait TableTrait
 {

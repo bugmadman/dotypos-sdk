@@ -1,6 +1,6 @@
 <?php
 
-namespace BMM\Dotypos\Reservation;
+namespace BMM\DotyposSdk\Reservation;
 
 final class Status
 {

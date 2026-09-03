@@ -1,6 +1,6 @@
 <?php
 
-namespace BMM\Dotypos\Infrastructure\HttpClient\DTO;
+namespace BMM\DotyposSdk\Infrastructure\HttpClient\DTO;
 
 class ViolationDTO
 {
