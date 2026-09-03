@@ -16,7 +16,7 @@ trait SerializerTrait
             object $innerObject,
             object $outerObject,
             string $attributeName,
-            string $format = null,
+            ?string $format = null,
             array $context = [])
         : string {
             return $innerObject instanceof \DateTimeImmutable ? $innerObject->format(\DateTimeImmutable::ATOM) : '';
