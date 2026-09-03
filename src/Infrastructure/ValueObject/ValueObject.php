@@ -9,9 +9,9 @@ use Symfony\Component\Validator\Validation;
 
 class ValueObject
 {
-    public function validate(mixed $value, Constraint|array $constraints = null): void
+    public function validate(mixed $value, Constraint|array|null $constraints = null): void
     {
-        $validator = Validation::createValidatorBuilder()->enableAnnotationMapping()->getValidator();
+        $validator = Validation::createValidatorBuilder()->getValidator();
         $violations = $validator->validate($value, $constraints);
 
         if (0 !== count($violations)) {
