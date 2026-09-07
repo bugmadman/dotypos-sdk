@@ -14,6 +14,7 @@ use BMM\DotyposSdk\Reservation\ReservationTrait;
 use BMM\DotyposSdk\Table\TableTrait;
 use BMM\DotyposSdk\Warehouse\WarehouseTrait;
 use BMM\DotyposSdk\Webhook\WebhookTrait;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 final readonly class Api
 {
@@ -32,6 +33,7 @@ final readonly class Api
     public function __construct(
         private int $cloudId,
         private string $accessToken,
+        private ?HttpClientInterface $httpClient = null,
     ) {
     }
 
@@ -42,6 +44,6 @@ final readonly class Api
 
     private function getHttpClient(): HttpClient
     {
-        return new HttpClient($this->cloudId, $this->accessToken);
+        return new HttpClient($this->cloudId, $this->accessToken, $this->httpClient);
     }
 }

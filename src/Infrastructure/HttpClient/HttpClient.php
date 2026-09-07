@@ -10,22 +10,27 @@ use BMM\DotyposSdk\Infrastructure\HttpClient\DTO\HeaderDTO;
 use BMM\DotyposSdk\Infrastructure\HttpClient\DTO\ResponseDTO;
 use BMM\DotyposSdk\Infrastructure\HttpClient\DTO\ViolationsExceptionDTO;
 use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\AuthorizationRequestVO;
+use Symfony\Component\HttpClient\HttpClient as SymfonyHttpClient;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 final readonly class HttpClient
 {
     use DeserializerTrait;
     use DenormalizeTrait;
 
+    private HttpClientInterface $client;
+
     public function __construct(
         private ?int $cloudId = null,
         private ?string $accessToken = null,
+        ?HttpClientInterface $client = null,
     ) {
+        $this->client = $client ?? SymfonyHttpClient::create();
     }
 
     public function sendAuthorizationRequest(AuthorizationRequestVO $payload): string
     {
-        $client = \Symfony\Component\HttpClient\HttpClient::create();
-        $response = $client->request(
+        $response = $this->client->request(
             $payload->getRequestsMethod(),
             $payload->getUri(),
             [
@@ -77,8 +82,7 @@ final readonly class HttpClient
             $options['query']['limit'] = $payload->getPagination()->getLimit();
         }
 
-        $client = \Symfony\Component\HttpClient\HttpClient::create();
-        $response = $client->request(
+        $response = $this->client->request(
             $payload->getRequestsMethod(),
             $payload->getUri() . $this->cloudId . '/' . $payload->getPath(),
             $options

@@ -21,6 +21,7 @@
         "php": ">=8.2",
         "symfony/validator": "^7.4",
         "symfony/http-client": "^7.4",
+        "symfony/http-client-contracts": "^3.5",
         "symfony/serializer": "^7.4",
         "symfony/property-info": "^7.4",
         "phpdocumentor/reflection-docblock": "^6.0"
