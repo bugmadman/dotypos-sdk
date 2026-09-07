@@ -17,8 +17,7 @@ trait OrderTrait
             requestsMethod: $this->getEndpoint()->getOrder()->getRequestsMethod(),
         );
         $response = $this->getHttpClient()->sendRequest($request);
-        $order = $this->deserialize($response->data, OrderDTO::class);
-        $order->eTag = $response->etag;
+        $order = $this->deserialize($response->data, OrderDTO::class, $response->etag);
 
         return $order;
     }
@@ -32,8 +31,7 @@ trait OrderTrait
             pagination: $pagination
         );
         $response = $this->getHttpClient()->sendRequest($request);
-        $orders = $this->deserialize($response->data, OrdersDTO::class);
-        $orders->eTag = $response->etag;
+        $orders = $this->deserialize($response->data, OrdersDTO::class, $response->etag);
 
 //        TODO add support for page, limit, filter, sor
         return $orders;

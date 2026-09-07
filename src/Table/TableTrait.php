@@ -17,8 +17,7 @@ trait TableTrait
             pagination: $pagination
         );
         $response = $this->getHttpClient()->sendRequest($request);
-        $tables = $this->deserialize($response->data, TablesDTO::class);
-        $tables->eTag = $response->etag;
+        $tables = $this->deserialize($response->data, TablesDTO::class, $response->etag);
 
 //        TODO add support for page, limit, filter, sor
         return $tables;

@@ -17,8 +17,7 @@ trait WarehouseTrait
             pagination: $pagination
         );
         $response = $this->getHttpClient()->sendRequest($request);
-        $warehouses = $this->deserialize($response->data, WarehousesDTO::class);
-        $warehouses->eTag = $response->etag;
+        $warehouses = $this->deserialize($response->data, WarehousesDTO::class, $response->etag);
 
 ////        TODO add support for page, limit, filter, sort
         return $warehouses;

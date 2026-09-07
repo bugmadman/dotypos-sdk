@@ -18,8 +18,7 @@ trait ReservationTrait
             requestsMethod: $this->getEndpoint()->getReservation()->getRequestsMethod(),
         );
         $response = $this->getHttpClient()->sendRequest($request);
-        $reservation = $this->deserialize($response->data, ReservationDTO::class);
-        $reservation->eTag = $response->etag;
+        $reservation = $this->deserialize($response->data, ReservationDTO::class, $response->etag);
 
         return $reservation;
     }
@@ -33,8 +32,7 @@ trait ReservationTrait
             pagination: $pagination
         );
         $response = $this->getHttpClient()->sendRequest($request);
-        $reservations = $this->deserialize($response->data, ReservationsDTO::class);
-        $reservations->eTag = $response->etag;
+        $reservations = $this->deserialize($response->data, ReservationsDTO::class, $response->etag);
 
 //        TODO add support for page, limit, filter, sort
         return $reservations;

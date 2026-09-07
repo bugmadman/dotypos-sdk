@@ -17,8 +17,7 @@ trait BranchTrait
             pagination: $pagination
         );
         $response = $this->getHttpClient()->sendRequest($request);
-        $branches = $this->deserialize($response->data, BranchesDTO::class);
-        $branches->eTag = $response->etag;
+        $branches = $this->deserialize($response->data, BranchesDTO::class, $response->etag);
 
 //        TODO add support for page, limit, filter, sor
         return $branches;

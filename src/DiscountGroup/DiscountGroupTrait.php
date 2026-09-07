@@ -18,8 +18,7 @@ trait DiscountGroupTrait
             requestsMethod: $this->getEndpoint()->getDiscountGroup()->getRequestsMethod(),
         );
         $response = $this->getHttpClient()->sendRequest($request);
-        $discountGroup = $this->deserialize($response->data, DiscountGroupDTO::class);
-        $discountGroup->eTag = $response->etag;
+        $discountGroup = $this->deserialize($response->data, DiscountGroupDTO::class, $response->etag);
 
         return $discountGroup;
     }
@@ -33,8 +32,7 @@ trait DiscountGroupTrait
             pagination: $pagination
         );
         $response = $this->getHttpClient()->sendRequest($request);
-        $discountGroups = $this->deserialize($response->data, DiscountGroupsDTO::class);
-        $discountGroups->eTag = $response->etag;
+        $discountGroups = $this->deserialize($response->data, DiscountGroupsDTO::class, $response->etag);
 
 //        TODO add support for page, limit, filter, sor
         return $discountGroups;

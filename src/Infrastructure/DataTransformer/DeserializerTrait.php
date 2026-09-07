@@ -2,6 +2,7 @@
 
 namespace BMM\DotyposSdk\Infrastructure\DataTransformer;
 
+use BMM\DotyposSdk\Infrastructure\DTO\DTO;
 use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
 use Symfony\Component\PropertyInfo\PropertyInfoExtractor;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -17,7 +18,7 @@ trait DeserializerTrait
      * @return T|T[]
      * @template T
      */
-    private function deserialize(string $payload, string $dto): object|array
+    private function deserialize(string $payload, string $dto, ?string $eTag = null): object|array
     {
         $extractor = new PropertyInfoExtractor([], [new PhpDocExtractor()]);
         $normalizers = [
@@ -33,6 +34,12 @@ trait DeserializerTrait
         $encoders = [new JsonEncoder()];
         $serializer = new Serializer($normalizers, $encoders);
 
-        return $serializer->deserialize($payload, $dto,  'json');
+        $result = $serializer->deserialize($payload, $dto, 'json');
+
+        if ($eTag !== null && $result instanceof DTO) {
+            $result->setETag($eTag);
+        }
+
+        return $result;
     }
 }

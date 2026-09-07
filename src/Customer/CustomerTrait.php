@@ -25,8 +25,7 @@ trait CustomerTrait
             requestsMethod: $this->getEndpoint()->getCustomer()->getRequestsMethod(),
         );
         $response = $this->getHttpClient()->sendRequest($request);
-        $customer = $this->deserialize($response->data, CustomerDTO::class);
-        $customer->eTag = $response->etag;
+        $customer = $this->deserialize($response->data, CustomerDTO::class, $response->etag);
 
         return $customer;
     }
@@ -47,8 +46,7 @@ trait CustomerTrait
             pagination: $pagination
         );
         $response = $this->getHttpClient()->sendRequest($request);
-        $customers = $this->deserialize($response->data, CustomersDTO::class);
-        $customers->eTag = $response->etag;
+        $customers = $this->deserialize($response->data, CustomersDTO::class, $response->etag);
 
 //        TODO add support for page, limit, filter, sort
         return $customers;
