@@ -23,6 +23,7 @@
         "symfony/http-client": "^7.4",
         "symfony/http-client-contracts": "^3.5",
         "symfony/serializer": "^7.4",
+        "symfony/property-access": "^7.4",
         "symfony/property-info": "^7.4",
         "phpdocumentor/reflection-docblock": "^6.0"
     }
