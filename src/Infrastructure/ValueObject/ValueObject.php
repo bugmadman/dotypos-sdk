@@ -2,17 +2,14 @@
 
 namespace BMM\DotyposSdk\Infrastructure\ValueObject;
 
-use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintViolationInterface;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
-use Symfony\Component\Validator\Validation;
 
 readonly class ValueObject
 {
-    public function validate(mixed $value, Constraint|array|null $constraints = null): void
+    protected function validate(): void
     {
-        $validator = Validation::createValidatorBuilder()->enableAttributeMapping()->getValidator();
-        $violations = $validator->validate($value, $constraints);
+        $violations = ValidatorFactory::get()->validate($this);
 
         if (0 !== count($violations)) {
             $prepareErrors = $this->prepareErrors($violations);

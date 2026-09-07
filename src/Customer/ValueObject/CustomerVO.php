@@ -38,7 +38,7 @@ final readonly class CustomerVO extends ValueObject
         private ?int $id = null,
         private ?bool $deleted = false,
     ) {
-        $this->validate($this);
+        $this->validate();
     }
 
     public function getLastName(): string

@@ -13,7 +13,7 @@ final readonly class AccessTokenVO extends ValueObject
         #[Assert\GreaterThan(0)]
         private int $cloudId,
     ) {
-        $this->validate($this);
+        $this->validate();
     }
 
     public function getUser(): string

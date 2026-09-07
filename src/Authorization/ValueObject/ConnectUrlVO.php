@@ -19,7 +19,7 @@ final readonly class ConnectUrlVO extends ValueObject
         //TODO scope from Enum
         private ?string $scope = '*',
     ) {
-        $this->validate($this);
+        $this->validate();
     }
 
     public function getClientId(): string

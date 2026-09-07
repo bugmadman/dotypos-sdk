@@ -14,7 +14,7 @@ final readonly class DiscountGroupVO extends ValueObject
         public ?int $id = null,
         public ?string $externalId = null,
     ) {
-        $this->validate($this);
+        $this->validate();
     }
 
     public function getName(): string

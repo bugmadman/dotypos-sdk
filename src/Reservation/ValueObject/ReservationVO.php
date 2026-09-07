@@ -20,7 +20,7 @@ final readonly class ReservationVO extends ValueObject
         private ?int $id = null,
         private ?string $note = null,
     ) {
-        $this->validate($this);
+        $this->validate();
     }
 
     public function getBranchId(): int

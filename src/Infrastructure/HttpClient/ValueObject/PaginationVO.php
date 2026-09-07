@@ -13,7 +13,7 @@ final readonly class PaginationVO extends ValueObject
         #[Assert\Range(min: 1, max: 100)]
         private ?int $limit = 20
     ) {
-        $this->validate($this);
+        $this->validate();
     }
 
     public function getPage(): ?int
