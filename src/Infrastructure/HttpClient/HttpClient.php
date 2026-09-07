@@ -2,7 +2,6 @@
 
 namespace BMM\DotyposSdk\Infrastructure\HttpClient;
 
-
 use BMM\DotyposSdk\Exception\AuthorizationException;
 use BMM\DotyposSdk\Exception\ConnectionException;
 use BMM\DotyposSdk\Exception\DotyposException;
@@ -114,9 +113,9 @@ final readonly class HttpClient
                 $fieldName = $violation->fieldName;
                 $violations .= \sprintf(
                     '%s %s.%s',
-                    $fieldName? $fieldName . ': ' : '',
+                    $fieldName ? $fieldName . ': ' : '',
                     $violation->message,
-                    $key !== count($violationsExceptionDTO)? ' ' : ''
+                    $key !== count($violationsExceptionDTO) ? ' ' : ''
                 );
             }
 

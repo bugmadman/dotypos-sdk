@@ -58,5 +58,4 @@ final class OrderDTO extends DTO
     public float $totalValueRounded;
     public string $updated;
     public string $versionDate;
-
 }

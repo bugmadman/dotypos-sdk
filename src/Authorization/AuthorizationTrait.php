@@ -14,7 +14,8 @@ trait AuthorizationTrait
 
     public function getConnectUri(ConnectUrlVO $payload): string
     {
-        return \sprintf('%s?client_id=%s&client_secret=%s&scope=%s&redirect_uri=%s%s',
+        return \sprintf(
+            '%s?client_id=%s&client_secret=%s&scope=%s&redirect_uri=%s%s',
             $this->getEndpoint()::CONNECT_URI,
             $payload->getClientId(),
             $payload->getClientSecret(),

@@ -2,7 +2,6 @@
 
 namespace BMM\DotyposSdk\OrderItem\DTO;
 
-
 use BMM\DotyposSdk\Infrastructure\Trait\PaginationTraitDTO;
 
 final class OrderItemsDTO

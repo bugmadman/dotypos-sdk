@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<ruleset name="dotypos-sdk">
+    <description>Coding standard for bmm/dotypos-sdk</description>
+
+    <arg name="basepath" value="."/>
+    <arg name="colors"/>
+    <arg name="extensions" value="php"/>
+    <arg value="np"/>
+
+    <file>src</file>
+
+    <rule ref="PSR12"/>
+</ruleset>

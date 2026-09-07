@@ -18,8 +18,8 @@ trait SerializerTrait
             object $_outerObject,
             string $_attributeName,
             ?string $_format = null,
-            array $_context = [])
-        : string {
+            array $_context = []
+        ): string {
             return $innerObject instanceof \DateTimeImmutable ? $innerObject->format(\DateTimeImmutable::ATOM) : '';
         };
 

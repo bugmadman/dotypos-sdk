@@ -1,0 +1,8 @@
+grumphp:
+    tasks:
+        composer:
+            strict: true
+        phplint:
+            exclude: ['vendor']
+        phpcs:
+            standard: []

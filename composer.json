@@ -26,5 +26,15 @@
         "symfony/property-access": "^7.4",
         "symfony/property-info": "^7.4",
         "phpdocumentor/reflection-docblock": "^6.0"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.11",
+        "phpro/grumphp": "^2",
+        "php-parallel-lint/php-parallel-lint": "^1.4"
+    },
+    "config": {
+        "allow-plugins": {
+            "phpro/grumphp": true
+        }
     }
 }
