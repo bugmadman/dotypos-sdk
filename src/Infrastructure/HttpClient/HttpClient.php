@@ -11,11 +11,16 @@ use BMM\DotyposSdk\Infrastructure\HttpClient\DTO\ResponseDTO;
 use BMM\DotyposSdk\Infrastructure\HttpClient\DTO\ViolationsExceptionDTO;
 use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\AuthorizationRequestVO;
 
-final class HttpClient
+final readonly class HttpClient
 {
-    use SessionExtractor;
     use DeserializerTrait;
     use DenormalizeTrait;
+
+    public function __construct(
+        private ?int $cloudId = null,
+        private ?string $accessToken = null,
+    ) {
+    }
 
     public function sendAuthorizationRequest(AuthorizationRequestVO $payload): string
     {
@@ -47,7 +52,7 @@ final class HttpClient
         $headers = [
             'Accept' => 'application/json; charset=UTF-8',
             'Content-Type' => 'application/json; charset=UTF-8',
-            'authorization' => 'Bearer ' . $this->getAccessToken(),
+            'authorization' => 'Bearer ' . $this->accessToken,
         ];
         if ($payload->getETag() !== null) {
             $headers['If-Match'] = $payload->getETag();
@@ -75,7 +80,7 @@ final class HttpClient
         $client = \Symfony\Component\HttpClient\HttpClient::create();
         $response = $client->request(
             $payload->getRequestsMethod(),
-            $payload->getUri() . $this->getCloudId() . '/' . $payload->getPath(),
+            $payload->getUri() . $this->cloudId . '/' . $payload->getPath(),
             $options
         );
         $statusCode = $response->getStatusCode();

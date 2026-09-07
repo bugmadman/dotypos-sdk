@@ -15,7 +15,7 @@ use BMM\DotyposSdk\Table\TableTrait;
 use BMM\DotyposSdk\Warehouse\WarehouseTrait;
 use BMM\DotyposSdk\Webhook\WebhookTrait;
 
-final class Api
+final readonly class Api
 {
     use DeserializerTrait;
     use SerializerTrait;
@@ -33,9 +33,6 @@ final class Api
         private int $cloudId,
         private string $accessToken,
     ) {
-        //TODO think about it
-        $_SESSION['cloudId'] = $cloudId;
-        $_SESSION['accessToken'] = $accessToken;
     }
 
     private function getEndpoint(): Endpoint
@@ -45,6 +42,6 @@ final class Api
 
     private function getHttpClient(): HttpClient
     {
-        return new HttpClient();
+        return new HttpClient($this->cloudId, $this->accessToken);
     }
 }
