@@ -3,6 +3,12 @@
 namespace BMM\DotyposSdk\Infrastructure\HttpClient;
 
 
+use BMM\DotyposSdk\Exception\AuthorizationException;
+use BMM\DotyposSdk\Exception\ConnectionException;
+use BMM\DotyposSdk\Exception\DotyposException;
+use BMM\DotyposSdk\Exception\NotFoundException;
+use BMM\DotyposSdk\Exception\PreconditionFailedException;
+use BMM\DotyposSdk\Exception\ValidationFailedException;
 use BMM\DotyposSdk\Infrastructure\DataTransformer\DenormalizeTrait;
 use BMM\DotyposSdk\Infrastructure\DataTransformer\DeserializerTrait;
 use BMM\DotyposSdk\Infrastructure\HttpClient\DTO\ConnectExceptionDTO;
@@ -11,7 +17,9 @@ use BMM\DotyposSdk\Infrastructure\HttpClient\DTO\ResponseDTO;
 use BMM\DotyposSdk\Infrastructure\HttpClient\DTO\ViolationsExceptionDTO;
 use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\AuthorizationRequestVO;
 use Symfony\Component\HttpClient\HttpClient as SymfonyHttpClient;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Symfony\Contracts\HttpClient\ResponseInterface;
 
 final readonly class HttpClient
 {
@@ -43,13 +51,20 @@ final readonly class HttpClient
             ]
         );
 
-        if (201 !== $response->getStatusCode()) {
-            $response = $response->getContent(false);
-            $connectException = $this->deserialize($response, ConnectExceptionDTO::class);
-            throw new \Exception($connectException->message, $connectException->status);
+        [$statusCode, $content] = $this->readResponse($response);
+
+        if (201 !== $statusCode) {
+            $connectException = $this->deserialize($content, ConnectExceptionDTO::class);
+
+            throw match ($statusCode) {
+                403, 405 => new AuthorizationException($connectException->message, (int) $connectException->status),
+                404 => new NotFoundException($connectException->message),
+                412 => new PreconditionFailedException($connectException->message),
+                default => new DotyposException($connectException->message, (int) $connectException->status),
+            };
         }
 
-        return $response->getContent();
+        return $content;
     }
 
     public function sendRequest(ValueObject\RequestVO $payload): ResponseDTO
@@ -87,19 +102,19 @@ final readonly class HttpClient
             $payload->getUri() . $this->cloudId . '/' . $payload->getPath(),
             $options
         );
-        $statusCode = $response->getStatusCode();
+        [$statusCode, $content, $rawHeaders] = $this->readResponse($response);
+
         if ($statusCode >= 200 && $statusCode <= 299) {
-            $headers = $this->denormalize($response->getHeaders(), HeaderDTO::class);
+            $headers = $this->denormalize($rawHeaders, HeaderDTO::class);
             $responseDTO = new ResponseDTO();
-            $responseDTO->data = $response->getContent();
+            $responseDTO->data = $content;
             $responseDTO->etag = $headers->etag[0] ?? null;
 
             return $responseDTO;
         }
 
         if ($statusCode === 400) {
-            $response = $response->getContent(false);
-            $violationsExceptionDTO = $this->deserialize($response, ViolationsExceptionDTO::class)->violations;
+            $violationsExceptionDTO = $this->deserialize($content, ViolationsExceptionDTO::class)->violations;
 
             $violations = '';
             foreach ($violationsExceptionDTO as $key => $violation) {
@@ -112,18 +127,32 @@ final readonly class HttpClient
                 );
             }
 
-            throw new \Exception($violations);
+            throw new ValidationFailedException($violations, $violationsExceptionDTO);
         } elseif ($statusCode === 403 || $statusCode === 405) {
-            $response = $response->getContent(false);
-            $connectException = $this->deserialize($response, ConnectExceptionDTO::class);
-            throw new \Exception($connectException->message, $connectException->status);
+            $connectException = $this->deserialize($content, ConnectExceptionDTO::class);
+            throw new AuthorizationException($connectException->message, (int) $connectException->status);
         } elseif ($statusCode === 404) {
-//            TODO return null ?
-            throw new \Exception('Not found.');
+            throw new NotFoundException('Not found.');
         } elseif ($statusCode === 412) {
-            throw new \Exception('Failed validate ETag.');
+            throw new PreconditionFailedException('Failed validate ETag.');
         } else {
-            throw new \Exception('Something wrong at Dotypos request.');
+            throw new DotyposException('Something wrong at Dotypos request.');
+        }
+    }
+
+    /**
+     * @return array{0: int, 1: string, 2: array<string, string[]>}
+     */
+    private function readResponse(ResponseInterface $response): array
+    {
+        try {
+            $statusCode = $response->getStatusCode();
+            $content = $response->getContent(false);
+            $headers = $statusCode >= 200 && $statusCode <= 299 ? $response->getHeaders() : [];
+
+            return [$statusCode, $content, $headers];
+        } catch (TransportExceptionInterface $e) {
+            throw new ConnectionException($e->getMessage(), previous: $e);
         }
     }
 }
