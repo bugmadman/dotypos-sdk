@@ -7,7 +7,7 @@ use Symfony\Component\Validator\ConstraintViolationInterface;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Symfony\Component\Validator\Validation;
 
-class ValueObject
+readonly class ValueObject
 {
     public function validate(mixed $value, Constraint|array|null $constraints = null): void
     {

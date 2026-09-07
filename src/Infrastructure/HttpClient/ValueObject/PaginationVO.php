@@ -5,7 +5,7 @@ namespace BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject;
 use BMM\DotyposSdk\Infrastructure\ValueObject\ValueObject;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class PaginationVO extends ValueObject
+final readonly class PaginationVO extends ValueObject
 {
     public function __construct(
         #[Assert\GreaterThan(0)]

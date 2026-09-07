@@ -5,7 +5,7 @@ namespace BMM\DotyposSdk\Authorization\ValueObject;
 use BMM\DotyposSdk\Infrastructure\ValueObject\ValueObject;
 use Symfony\Component\Validator\Constraints as Assert;
 
-final class ConnectUrlVO extends ValueObject
+final readonly class ConnectUrlVO extends ValueObject
 {
     public function __construct(
         #[Assert\NotBlank]

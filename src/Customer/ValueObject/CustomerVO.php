@@ -5,7 +5,7 @@ namespace BMM\DotyposSdk\Customer\ValueObject;
 use BMM\DotyposSdk\Infrastructure\ValueObject\ValueObject;
 use Symfony\Component\Validator\Constraints as Assert;
 
-final class CustomerVO extends ValueObject
+final readonly class CustomerVO extends ValueObject
 {
     public function __construct(
         private string $lastName,

@@ -4,7 +4,7 @@ namespace BMM\DotyposSdk\DiscountGroup\ValueObject;
 
 use BMM\DotyposSdk\Infrastructure\ValueObject\ValueObject;
 
-final class DiscountGroupVO extends ValueObject
+final readonly class DiscountGroupVO extends ValueObject
 {
     public function __construct(
         public string $name,

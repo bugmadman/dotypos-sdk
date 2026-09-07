@@ -5,20 +5,20 @@ namespace BMM\DotyposSdk\Reservation\ValueObject;
 use BMM\DotyposSdk\Infrastructure\ValueObject\ValueObject;
 use BMM\DotyposSdk\Reservation\ReservationStatus;
 
-final class ReservationVO extends ValueObject
+final readonly class ReservationVO extends ValueObject
 {
     public function __construct(
-        private readonly int $_branchId,
-        private readonly int $_customerId,
-        private readonly int $_employeeId,
-        private readonly int $_tableId,
-        private readonly \DateTimeImmutable $endDate,
-        private readonly int $flags,
-        private readonly ReservationStatus $status,
-        private readonly int $seats,
-        private readonly \DateTimeImmutable $startDate,
-        private readonly ?int $id = null,
-        private readonly ?string $note = null,
+        private int $_branchId,
+        private int $_customerId,
+        private int $_employeeId,
+        private int $_tableId,
+        private \DateTimeImmutable $endDate,
+        private int $flags,
+        private ReservationStatus $status,
+        private int $seats,
+        private \DateTimeImmutable $startDate,
+        private ?int $id = null,
+        private ?string $note = null,
     ) {
         $this->validate($this);
     }

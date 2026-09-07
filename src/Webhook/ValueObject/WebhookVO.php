@@ -2,7 +2,7 @@
 
 namespace BMM\DotyposSdk\Webhook\ValueObject;
 
-final class WebhookVO
+final readonly class WebhookVO
 {
     public function __construct(
         //TODO from enum
