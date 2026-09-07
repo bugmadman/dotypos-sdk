@@ -80,13 +80,6 @@ final readonly class HttpClient
 
         $options = [
             'headers' => $headers,
-//            'query' => [
-////                    'filter' => 'id|eq|900327549975047;id|eq|900269440754183',
-////                    'filter' => 'id|eq|900327549975047',
-////                    'filter' => 'lastName|like|111',
-////                    'filter' => 'id|eq|903516130902723',
-////                    'filter' => 'id|eq|907224679486955',
-//            ],
         ];
 
         if ($payload->getData() !== null) {

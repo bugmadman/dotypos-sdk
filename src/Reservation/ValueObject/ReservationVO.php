@@ -7,18 +7,6 @@ use BMM\DotyposSdk\Reservation\ReservationStatus;
 
 final class ReservationVO extends ValueObject
 {
-    private \DateTime $dateTime;
-
-    public function getDateTime(): \DateTime
-    {
-        return $this->dateTime;
-    }
-
-    public function setDateTime(\DateTime $dateTime): void
-    {
-        $this->dateTime = $dateTime;
-    }
-
     public function __construct(
         private readonly int $_branchId,
         private readonly int $_customerId,

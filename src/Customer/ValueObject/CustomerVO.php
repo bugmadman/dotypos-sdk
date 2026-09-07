@@ -17,12 +17,22 @@ final class CustomerVO extends ValueObject
         private ?string $email = '',
         private ?string $firstName = '',
         private ?string $headerPrint = '',
-        private ?string $hexColor = '#000000', // start with # add validator,
+        #[Assert\Regex('/^#[0-9A-Fa-f]{6}$/')]
+        private ?string $hexColor = '#000000',
         private ?string $internalNote = '',
         private ?string $phone = '',
         private ?float $points = 0,
         private ?array $tags = [],
-        private ?string $vatId = '', // DIČ validate !!!!CZ27082440
+        // Full EU VAT-ID regex, copied verbatim from Dotypos API docs (validation#vatid) —
+        // the server accepts any EU country, not just CZ/SK/PL, despite Dotypos being a Czech product.
+        #[Assert\Regex(
+            '/^((AT)U[0-9]{8}|(BE)0[0-9]{9}|(BG)[0-9]{9,10}|(CY)[0-9]{8}L|(CZ)[0-9]{8,10}|(DE)[0-9]{9}|(DK)[0-9]{8}'
+            . '|(EE)[0-9]{9}|(EL|GR)[0-9]{9}|(ES)[0-9A-Z][0-9]{7}[0-9A-Z]|(FI)[0-9]{8}|(FR)[0-9A-Z]{2}[0-9]{9}'
+            . '|(GB)([0-9]{9}([0-9]{3})|[A-Z]{2}[0-9]{3})|(HU)[0-9]{8}|(IE)[0-9]S[0-9]{5}L|(IT)[0-9]{11}'
+            . '|(LT)([0-9]{9}|[0-9]{12})|(LU)[0-9]{8}|(LV)[0-9]{11}|(MT)[0-9]{8}|(NL)[0-9]{9}B[0-9]{2}|(PL)[0-9]{10}'
+            . '|(PT)[0-9]{9}|(RO)[0-9]{2,10}|(SE)[0-9]{12}|(SI)[0-9]{8}|(SK)[0-9]{10})$/'
+        )]
+        private ?string $vatId = '',
         private ?string $zip = '',
         private ?int $flags = 0,
         private ?int $id = null,
@@ -126,95 +136,3 @@ final class CustomerVO extends ValueObject
         return $this->deleted;
     }
 }
-
-//
-//Customer schema
-//id long?
-//    Customer ID - cannot be null in PUT/PATCH methods
-//📶 EQUALS,ENUM
-//_cloudId integer
-//Cloud ID
-//_discountGroupId long?
-//    Discount group ID
-//📶 EQUALS,ENUM
-//_sellerId long?
-//Seller ID
-//📶 EQUALS,ENUM
-//addressLine1 string(180)
-//Address line 1
-//📶 STRING
-//addressLine2 string?(180)
-//    Address line 2
-//📶 STRING
-//barcode string(50)
-//Bar code
-//📶 EQUALS,ENUM
-//birthday timestamp?
-//The date of birth
-//city string?(255)
-//    City
-//📶 EQUALS,STRING
-//companyId string(255)
-//Customer company ID (CZ: IČO, PL: REGON)
-//📶 ENUM
-//companyName string(180) [1]
-//Customer company name
-//📶 STRING 🔽 BOTH
-//country string?(10)
-//    Country code
-//📶 STRING
-//created timestamp?
-//    Customer created date and time
-//📶 EQUALS, ENUM, NUMBER 🔽 BOTH
-//deleted boolean
-//Customer deleted - cannot be true in POST/PUT/PATCH methods
-//📶 EQUALS, ENUM 🔽 BOTH
-//display boolean
-//Customer displayed
-//📶 EQUALS, ENUM 🔽 BOTH
-//email string(100)
-//E-mail address
-//📶 STRING
-//expireDate timestamp?
-//    Customer expire date and time
-//📶 EQUALS, ENUM, NUMBER 🔽 BOTH
-//externalId string?(256)
-//    External ID
-//📶 EQUALS,ENUM
-//firstName string(180) [1]
-//First name
-//📶 STRING 🔽 BOTH
-//flags long
-//Customer flags
-//📶 BITS
-//headerPrint string(256)
-//Header for printing
-//           hexColor string(7)
-//Product color
-//internalNote string(1000)
-//Internal note
-//lastName string(180) [1]
-//Last name
-//📶 STRING 🔽 BOTH
-//modifiedBy string?(32)
-//    Customer modified by
-//note string?(500)
-//    Customer note
-//phone string(20)
-//Phone
-//📶 STRING
-//points double
-//Customer points - must be greater than or equal to 0
-//📶 NUMBER
-//tags string[](255)
-//Tags for a customer
-//         📶 EQUALS, ENUM
-//vatId string(255)
-//Customer VAT ID (CZ: DIČ, PL: NIP). Validation regex.
-//versionDate timestamp?
-//    Last modification date and time
-//📶 EQUALS, ENUM, NUMBER 🔽 BOTH
-//zip string(20)
-//ZIP code
-//📶 STRING
-//[1] Properties firstName, lastName and companyName  must not be blank. At least one of these properties must contain a non-blank value.
