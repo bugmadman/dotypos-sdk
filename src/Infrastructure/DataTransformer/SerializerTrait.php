@@ -4,6 +4,7 @@ namespace BMM\DotyposSdk\Infrastructure\DataTransformer;
 
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
+use Symfony\Component\Serializer\Normalizer\BackedEnumNormalizer;
 use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 use Symfony\Component\Serializer\Normalizer\PropertyNormalizer;
 use Symfony\Component\Serializer\Serializer;
@@ -14,10 +15,10 @@ trait SerializerTrait
     {
         $dateCallback = function (
             object $innerObject,
-            object $outerObject,
-            string $attributeName,
-            ?string $format = null,
-            array $context = [])
+            object $_outerObject,
+            string $_attributeName,
+            ?string $_format = null,
+            array $_context = [])
         : string {
             return $innerObject instanceof \DateTimeImmutable ? $innerObject->format(\DateTimeImmutable::ATOM) : '';
         };
@@ -29,6 +30,7 @@ trait SerializerTrait
         ];
 
         $normalizers = [
+            new BackedEnumNormalizer(),
             new DateTimeNormalizer(),
             new PropertyNormalizer(
                 null,

@@ -2,11 +2,13 @@
 
 namespace BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject;
 
-class AuthorizationRequestVO
+use BMM\DotyposSdk\HttpMethod;
+
+final readonly class AuthorizationRequestVO
 {
     public function __construct(
         private string $uri,
-        private string $requestsMethod,
+        private HttpMethod $requestsMethod,
         private string $cloudId,
         private string $user,
     ) {
@@ -17,7 +19,7 @@ class AuthorizationRequestVO
         return $this->uri;
     }
 
-    public function getRequestsMethod(): string
+    public function getRequestsMethod(): HttpMethod
     {
         return $this->requestsMethod;
     }
@@ -31,8 +33,4 @@ class AuthorizationRequestVO
     {
         return $this->user;
     }
-
-//>getUser(),
-//],
-//'json' => ['_cloudId' => $this->getCloudId()],
 }

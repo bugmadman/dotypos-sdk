@@ -39,7 +39,7 @@ final readonly class HttpClient
     public function sendAuthorizationRequest(AuthorizationRequestVO $payload): string
     {
         $response = $this->client->request(
-            $payload->getRequestsMethod(),
+            $payload->getRequestsMethod()->value,
             $payload->getUri(),
             [
                 'headers' => [
@@ -98,7 +98,7 @@ final readonly class HttpClient
         }
 
         $response = $this->client->request(
-            $payload->getRequestsMethod(),
+            $payload->getRequestsMethod()->value,
             $payload->getUri() . $this->cloudId . '/' . $payload->getPath(),
             $options
         );

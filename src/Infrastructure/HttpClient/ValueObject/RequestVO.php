@@ -2,12 +2,14 @@
 
 namespace BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject;
 
-class RequestVO
+use BMM\DotyposSdk\HttpMethod;
+
+final readonly class RequestVO
 {
     public function __construct(
         private string $uri,
         private string $path,
-        private string $requestsMethod,
+        private HttpMethod $requestsMethod,
         private ?string $data = null,
         private ?string $eTag = null,
         private ?PaginationVO $pagination = null,
@@ -24,7 +26,7 @@ class RequestVO
         return $this->path;
     }
 
-    public function getRequestsMethod(): string
+    public function getRequestsMethod(): HttpMethod
     {
         return $this->requestsMethod;
     }

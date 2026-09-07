@@ -2,11 +2,11 @@
 
 namespace BMM\DotyposSdk;
 
-final class EndpointVO
+final readonly class EndpointVO
 {
     public function __construct(
         private string $url,
-        private string $requestsMethod,
+        private HttpMethod $requestsMethod,
         private ?string $path = null,
     ) {
     }
@@ -16,7 +16,7 @@ final class EndpointVO
         return $this->url;
     }
 
-    public function getRequestsMethod(): string
+    public function getRequestsMethod(): HttpMethod
     {
         return $this->requestsMethod;
     }
