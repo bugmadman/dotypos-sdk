@@ -11,7 +11,7 @@ class ValueObject
 {
     public function validate(mixed $value, Constraint|array|null $constraints = null): void
     {
-        $validator = Validation::createValidatorBuilder()->getValidator();
+        $validator = Validation::createValidatorBuilder()->enableAttributeMapping()->getValidator();
         $violations = $validator->validate($value, $constraints);
 
         if (0 !== count($violations)) {
