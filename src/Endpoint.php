@@ -13,255 +13,189 @@ final class Endpoint
     private const REQUESTS_METHOD_DELETE = 'DELETE';
     private const API_URL = 'https://api.dotykacka.cz/v2/clouds/';
 
+    /**
+     * @var array<string, array{0: string, 1: string, 2: ?string}> name => [url, requestsMethod, path]
+     */
+    private const ENDPOINTS = [
+        'accessToken' => [self::TOKEN_URI, self::REQUESTS_METHOD_POST, null],
+        'getCustomer' => [self::API_URL, self::REQUESTS_METHOD_GET, 'customers'],
+        'getCustomers' => [self::API_URL, self::REQUESTS_METHOD_GET, 'customers'],
+        'createCustomers' => [self::API_URL, self::REQUESTS_METHOD_POST, 'customers'],
+        'replaceCustomer' => [self::API_URL, self::REQUESTS_METHOD_PUT, 'customers'],
+        'deleteCustomers' => [self::API_URL, self::REQUESTS_METHOD_DELETE, 'customers'],
+        'createDiscountGroups' => [self::API_URL, self::REQUESTS_METHOD_POST, 'discount-groups'],
+        'getDiscountGroup' => [self::API_URL, self::REQUESTS_METHOD_GET, 'discount-groups'],
+        'deleteDiscountGroup' => [self::API_URL, self::REQUESTS_METHOD_DELETE, 'discount-groups'],
+        'getDiscountGroups' => [self::API_URL, self::REQUESTS_METHOD_GET, 'discount-groups'],
+        'replaceDiscountGroup' => [self::API_URL, self::REQUESTS_METHOD_PUT, 'discount-groups'],
+        'replaceDiscountGroups' => [self::API_URL, self::REQUESTS_METHOD_PUT, 'discount-groups'],
+        'getOrder' => [self::API_URL, self::REQUESTS_METHOD_GET, 'orders'],
+        'getOrders' => [self::API_URL, self::REQUESTS_METHOD_GET, 'orders'],
+        'getOrderItem' => [self::API_URL, self::REQUESTS_METHOD_GET, 'order-items'],
+        'getOrderItems' => [self::API_URL, self::REQUESTS_METHOD_GET, 'order-items'],
+        'getReservation' => [self::API_URL, self::REQUESTS_METHOD_GET, 'reservations'],
+        'getReservations' => [self::API_URL, self::REQUESTS_METHOD_GET, 'reservations'],
+        'createReservations' => [self::API_URL, self::REQUESTS_METHOD_POST, 'reservations'],
+        'replaceReservation' => [self::API_URL, self::REQUESTS_METHOD_PUT, 'reservations'],
+        'replaceReservations' => [self::API_URL, self::REQUESTS_METHOD_PUT, 'reservations'],
+        'deleteReservation' => [self::API_URL, self::REQUESTS_METHOD_DELETE, 'reservations'],
+        'getTables' => [self::API_URL, self::REQUESTS_METHOD_GET, 'tables'],
+        'getBranches' => [self::API_URL, self::REQUESTS_METHOD_GET, 'branches'],
+        'getWebhooks' => [self::API_URL, self::REQUESTS_METHOD_GET, 'webhooks'],
+        'getWarehouses' => [self::API_URL, self::REQUESTS_METHOD_GET, 'warehouses'],
+        'registerWebhooks' => [self::API_URL, self::REQUESTS_METHOD_POST, 'webhooks'],
+        'deleteWebhook' => [self::API_URL, self::REQUESTS_METHOD_DELETE, 'webhooks'],
+    ];
+
+    public function get(string $name): EndpointVO
+    {
+        [$url, $requestsMethod, $path] = self::ENDPOINTS[$name];
+
+        return new EndpointVO(
+            url: $url,
+            requestsMethod: $requestsMethod,
+            path: $path
+        );
+    }
+
 //    accessToken to AutorizationEndpoint
     public function accessToken(): EndpointVO
     {
-        return new EndpointVO(
-            url: self::TOKEN_URI,
-            requestsMethod: self::REQUESTS_METHOD_POST
-        );
+        return $this->get('accessToken');
     }
 
     public function getCustomer(): EndpointVO
     {
-        return new EndpointVO(
-            url: self::API_URL,
-            requestsMethod: self::REQUESTS_METHOD_GET,
-            path: 'customers'
-        );
+        return $this->get('getCustomer');
     }
 
     public function getCustomers(): EndpointVO
     {
-        return new EndpointVO(
-            url: self::API_URL,
-            requestsMethod: self::REQUESTS_METHOD_GET,
-            path: 'customers'
-        );
+        return $this->get('getCustomers');
     }
 
     public function createCustomers(): EndpointVO
     {
-        return new EndpointVO(
-            url: self::API_URL,
-            requestsMethod: self::REQUESTS_METHOD_POST,
-            path: 'customers'
-        );
+        return $this->get('createCustomers');
     }
 
     public function replaceCustomer(): EndpointVO
     {
-        return new EndpointVO(
-            url: self::API_URL,
-            requestsMethod: self::REQUESTS_METHOD_PUT,
-            path: 'customers'
-        );
+        return $this->get('replaceCustomer');
     }
 
     public function deleteCustomers(): EndpointVO
     {
-        return new EndpointVO(
-            url: self::API_URL,
-            requestsMethod: self::REQUESTS_METHOD_DELETE,
-            path: 'customers'
-        );
+        return $this->get('deleteCustomers');
     }
 
     public function createDiscountGroups(): EndpointVO
     {
-        return new EndpointVO(
-            url: self::API_URL,
-            requestsMethod: self::REQUESTS_METHOD_POST,
-            path: 'discount-groups'
-        );
+        return $this->get('createDiscountGroups');
     }
 
     public function getDiscountGroup(): EndpointVO
     {
-        return new EndpointVO(
-            url: self::API_URL,
-            requestsMethod: self::REQUESTS_METHOD_GET,
-            path: 'discount-groups'
-        );
+        return $this->get('getDiscountGroup');
     }
 
     public function deleteDiscountGroup(): EndpointVO
     {
-        return new EndpointVO(
-            url: self::API_URL,
-            requestsMethod: self::REQUESTS_METHOD_DELETE,
-            path: 'discount-groups'
-        );
+        return $this->get('deleteDiscountGroup');
     }
 
     public function getDiscountGroups(): EndpointVO
     {
-        return new EndpointVO(
-            url: self::API_URL,
-            requestsMethod: self::REQUESTS_METHOD_GET,
-            path: 'discount-groups'
-        );
+        return $this->get('getDiscountGroups');
     }
 
     public function replaceDiscountGroup(): EndpointVO
     {
-        return new EndpointVO(
-            url: self::API_URL,
-            requestsMethod: self::REQUESTS_METHOD_PUT,
-            path: 'discount-groups'
-        );
+        return $this->get('replaceDiscountGroup');
     }
 
     public function replaceDiscountGroups(): EndpointVO
     {
-        return new EndpointVO(
-            url: self::API_URL,
-            requestsMethod: self::REQUESTS_METHOD_PUT,
-            path: 'discount-groups'
-        );
+        return $this->get('replaceDiscountGroups');
     }
 
     public function getOrder(): EndpointVO
     {
-        return new EndpointVO(
-            url: self::API_URL,
-            requestsMethod: self::REQUESTS_METHOD_GET,
-            path: 'orders'
-        );
+        return $this->get('getOrder');
     }
 
     public function getOrders(): EndpointVO
     {
-        return new EndpointVO(
-            url: self::API_URL,
-            requestsMethod: self::REQUESTS_METHOD_GET,
-            path: 'orders'
-        );
+        return $this->get('getOrders');
     }
 
     public function getOrderItem(): EndpointVO
     {
-        return new EndpointVO(
-            url: self::API_URL,
-            requestsMethod: self::REQUESTS_METHOD_GET,
-            path: 'order-items'
-        );
+        return $this->get('getOrderItem');
     }
 
     public function getOrderItems(): EndpointVO
     {
-        return new EndpointVO(
-            url: self::API_URL,
-            requestsMethod: self::REQUESTS_METHOD_GET,
-            path: 'order-items'
-        );
+        return $this->get('getOrderItems');
     }
 
     public function getReservation(): EndpointVO
     {
-        return new EndpointVO(
-            url: self::API_URL,
-            requestsMethod: self::REQUESTS_METHOD_GET,
-            path: 'reservations'
-        );
+        return $this->get('getReservation');
     }
 
     public function getReservations(): EndpointVO
     {
-        return new EndpointVO(
-            url: self::API_URL,
-            requestsMethod: self::REQUESTS_METHOD_GET,
-            path: 'reservations'
-        );
+        return $this->get('getReservations');
     }
 
     public function createReservations(): EndpointVO
     {
-        return new EndpointVO(
-            url: self::API_URL,
-            requestsMethod: self::REQUESTS_METHOD_POST,
-            path: 'reservations'
-        );
+        return $this->get('createReservations');
     }
 
     public function replaceReservation(): EndpointVO
     {
-        return new EndpointVO(
-            url: self::API_URL,
-            requestsMethod: self::REQUESTS_METHOD_PUT,
-            path: 'reservations'
-        );
+        return $this->get('replaceReservation');
     }
 
     public function replaceReservations(): EndpointVO
     {
-        return new EndpointVO(
-            url: self::API_URL,
-            requestsMethod: self::REQUESTS_METHOD_PUT,
-            path: 'reservations'
-        );
+        return $this->get('replaceReservations');
     }
 
     public function deleteReservation(): EndpointVO
     {
-        return new EndpointVO(
-            url: self::API_URL,
-            requestsMethod: self::REQUESTS_METHOD_DELETE,
-            path: 'reservations'
-        );
+        return $this->get('deleteReservation');
     }
 
     public function getTables(): EndpointVO
     {
-        return new EndpointVO(
-            url: self::API_URL,
-            requestsMethod: self::REQUESTS_METHOD_GET,
-            path: 'tables'
-        );
+        return $this->get('getTables');
     }
 
     public function getBranches(): EndpointVO
     {
-        return new EndpointVO(
-            url: self::API_URL,
-            requestsMethod: self::REQUESTS_METHOD_GET,
-            path: 'branches'
-        );
+        return $this->get('getBranches');
     }
 
     public function getWebhooks(): EndpointVO
     {
-        return new EndpointVO(
-            url: self::API_URL,
-            requestsMethod: self::REQUESTS_METHOD_GET,
-            path: 'webhooks'
-        );
+        return $this->get('getWebhooks');
     }
 
     public function getWarehouses(): EndpointVO
     {
-        return new EndpointVO(
-            url: self::API_URL,
-            requestsMethod: self::REQUESTS_METHOD_GET,
-            path: 'warehouses'
-        );
+        return $this->get('getWarehouses');
     }
 
     public function registerWebhooks(): EndpointVO
     {
-        return new EndpointVO(
-            url: self::API_URL,
-            requestsMethod: self::REQUESTS_METHOD_POST,
-            path: 'webhooks'
-        );
+        return $this->get('registerWebhooks');
     }
 
     public function deleteWebhook(): EndpointVO
     {
-        return new EndpointVO(
-            url: self::API_URL,
-            requestsMethod: self::REQUESTS_METHOD_DELETE,
-            path: 'webhooks'
-        );
+        return $this->get('deleteWebhook');
     }
 }
