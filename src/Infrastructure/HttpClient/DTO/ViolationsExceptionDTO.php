@@ -2,7 +2,7 @@
 
 namespace BMM\DotyposSdk\Infrastructure\HttpClient\DTO;
 
-class ViolationsExceptionDTO
+final class ViolationsExceptionDTO
 {
     /** @var ViolationDTO[] */
     public array $violations;

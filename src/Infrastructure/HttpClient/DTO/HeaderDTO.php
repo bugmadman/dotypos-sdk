@@ -2,7 +2,7 @@
 
 namespace BMM\DotyposSdk\Infrastructure\HttpClient\DTO;
 
-class HeaderDTO
+final class HeaderDTO
 {
     public ?array $etag;
 }

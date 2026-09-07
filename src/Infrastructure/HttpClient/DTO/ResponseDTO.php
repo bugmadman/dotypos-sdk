@@ -2,7 +2,7 @@
 
 namespace BMM\DotyposSdk\Infrastructure\HttpClient\DTO;
 
-class ResponseDTO
+final class ResponseDTO
 {
     public string $data;
     public ?string $etag;

@@ -2,7 +2,7 @@
 
 namespace BMM\DotyposSdk\Infrastructure\HttpClient\DTO;
 
-class ConnectExceptionDTO
+final class ConnectExceptionDTO
 {
     public string $timestamp;
     public string $status;

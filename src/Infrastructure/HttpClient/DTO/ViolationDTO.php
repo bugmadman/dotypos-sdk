@@ -2,7 +2,7 @@
 
 namespace BMM\DotyposSdk\Infrastructure\HttpClient\DTO;
 
-class ViolationDTO
+final class ViolationDTO
 {
     public ?string $fieldName = null;
     public string $message;
