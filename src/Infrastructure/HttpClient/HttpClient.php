@@ -113,7 +113,7 @@ final readonly class HttpClient
                 $fieldName = $violation->fieldName;
                 $violations .= \sprintf(
                     '%s %s.%s',
-                    $fieldName ? $fieldName . ': ' : '',
+                    $fieldName !== null && $fieldName !== '' ? $fieldName . ': ' : '',
                     $violation->message,
                     $key !== count($violationsExceptionDTO) ? ' ' : ''
                 );
