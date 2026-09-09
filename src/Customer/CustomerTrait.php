@@ -33,10 +33,10 @@ trait CustomerTrait
     /**
      * Retrieves a list of customers from the server.
      *
+     * @param ?PaginationVO $pagination Pagination options for the request.
      * @return CustomersDTO The retrieved list of customers.
      * @throws \Exception
      */
-    //todo update desc
     public function getCustomers(?PaginationVO $pagination): CustomersDTO
     {
         $request = new RequestVO(
