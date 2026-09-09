@@ -34,10 +34,10 @@ trait WebhookTrait
         );
         $response = $this->getHttpClient()->sendRequest($request);
 
-        return $this->deserialize($response->data, WebhookDTO::class . '[]');
+        return $this->deserializeMany($response->data, WebhookDTO::class);
     }
 
-    public function deleteWebhook(int $id)
+    public function deleteWebhook(int $id): WebhookDTO
     {
         $request = new RequestVO(
             uri: $this->getEndpoint()->deleteWebhook()->getUrl(),

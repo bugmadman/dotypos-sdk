@@ -42,6 +42,7 @@ final class OrderItemDTO extends DTO
     public int $quantity;
     public bool $stockDeduct;
     public ?string $subtitle = null;
+    /** @var string[] */
     public array $tags;
     public float $totalPriceWithVat;
     public float $totalPriceWithoutVat;
@@ -52,5 +53,7 @@ final class OrderItemDTO extends DTO
     public string $updated;
     public int $vat;
     public string $versionDate;
+    // TODO real element shape unverified — check against API docs (see plan item 5.1)
+    /** @var array<int, mixed> */
     public array $orderItemCustomizations;
 }

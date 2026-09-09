@@ -9,7 +9,7 @@ final readonly class AuthorizationRequestVO
     public function __construct(
         private string $uri,
         private HttpMethod $requestsMethod,
-        private string $cloudId,
+        private int $cloudId,
         private string $user,
     ) {
     }
@@ -24,7 +24,7 @@ final readonly class AuthorizationRequestVO
         return $this->requestsMethod;
     }
 
-    public function getCloudId(): string
+    public function getCloudId(): int
     {
         return $this->cloudId;
     }

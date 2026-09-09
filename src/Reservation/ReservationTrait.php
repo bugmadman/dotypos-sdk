@@ -60,7 +60,7 @@ trait ReservationTrait
         );
         $response = $this->getHttpClient()->sendRequest($request);
 
-        return $this->deserialize($response->data, ReservationDTO::class . '[]');
+        return $this->deserializeMany($response->data, ReservationDTO::class);
     }
 
     public function replaceReservation(ReservationVO $payload, string $eTag): ReservationDTO
@@ -82,6 +82,10 @@ trait ReservationTrait
         return $this->deserialize($response->data, ReservationDTO::class);
     }
 
+    /**
+     * @param ReservationVO[] $payload
+     * @return ReservationDTO[]
+     */
     public function replaceReservations(array $payload, string $eTag): array
     {
         $request = new RequestVO(
@@ -93,7 +97,7 @@ trait ReservationTrait
         );
         $response = $this->getHttpClient()->sendRequest($request);
 
-        return $this->deserialize($response->data, ReservationDTO::class . '[]');
+        return $this->deserializeMany($response->data, ReservationDTO::class);
     }
 
     public function deleteReservation(int $id): ReservationDTO

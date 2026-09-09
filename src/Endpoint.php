@@ -9,10 +9,10 @@ final class Endpoint
     private const API_URL = 'https://api.dotykacka.cz/v2/clouds/';
 
     /**
-     * @var array<string, array{0: string, 1: HttpMethod, 2: ?string}> name => [url, requestsMethod, path]
+     * @var array<string, array{0: string, 1: HttpMethod, 2: string}> name => [url, requestsMethod, path]
      */
     private const ENDPOINTS = [
-        EndpointName::AccessToken->value => [self::TOKEN_URI, HttpMethod::Post, null],
+        EndpointName::AccessToken->value => [self::TOKEN_URI, HttpMethod::Post, ''],
         EndpointName::GetCustomer->value => [self::API_URL, HttpMethod::Get, 'customers'],
         EndpointName::GetCustomers->value => [self::API_URL, HttpMethod::Get, 'customers'],
         EndpointName::CreateCustomers->value => [self::API_URL, HttpMethod::Post, 'customers'],

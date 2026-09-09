@@ -9,7 +9,7 @@ use BMM\DotyposSdk\Order\DTO\OrderDTO;
 
 trait OrderTrait
 {
-    public function getOrder(int $id)
+    public function getOrder(int $id): OrderDTO
     {
         $request = new RequestVO(
             uri: $this->getEndpoint()->getOrder()->getUrl(),

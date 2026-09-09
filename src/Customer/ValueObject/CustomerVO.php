@@ -7,6 +7,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 final readonly class CustomerVO extends ValueObject
 {
+    /**
+     * @param string[]|null $tags
+     */
     public function __construct(
         private string $lastName,
         private ?string $addressLine1 = '',
@@ -106,6 +109,9 @@ final readonly class CustomerVO extends ValueObject
         return $this->points;
     }
 
+    /**
+     * @return string[]|null
+     */
     public function getTags(): ?array
     {
         return $this->tags;

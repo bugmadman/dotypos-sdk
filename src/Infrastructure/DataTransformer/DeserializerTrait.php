@@ -13,12 +13,67 @@ use Symfony\Component\Serializer\Serializer;
 trait DeserializerTrait
 {
     /**
-     * @param string $payload
      * @param class-string<T> $dto
-     * @return T|T[]
-     * @template T
+     * @return T
+     * @template T of object
      */
-    private function deserialize(string $payload, string $dto, ?string $eTag = null): object|array
+    private function deserialize(string $payload, string $dto, ?string $eTag = null): object
+    {
+        $result = $this->buildSerializer()->deserialize($payload, $dto, 'json');
+
+        if (!$result instanceof $dto) {
+            throw new \UnexpectedValueException(\sprintf(
+                'Expected deserialize() to return an instance of %s, got %s.',
+                $dto,
+                get_debug_type($result)
+            ));
+        }
+
+        if ($eTag !== null && $result instanceof DTO) {
+            $result->setETag($eTag);
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param class-string<T> $dto
+     * @return T[]
+     * @template T of object
+     */
+    private function deserializeMany(string $payload, string $dto, ?string $eTag = null): array
+    {
+        $result = $this->buildSerializer()->deserialize($payload, $dto . '[]', 'json');
+
+        if (!\is_array($result)) {
+            throw new \UnexpectedValueException(\sprintf(
+                'Expected deserializeMany() to return an array of %s, got %s.',
+                $dto,
+                get_debug_type($result)
+            ));
+        }
+
+        $items = [];
+        foreach ($result as $item) {
+            if (!$item instanceof $dto) {
+                throw new \UnexpectedValueException(\sprintf(
+                    'Expected deserializeMany() to return an array of %s, got %s among its items.',
+                    $dto,
+                    get_debug_type($item)
+                ));
+            }
+
+            if ($eTag !== null && $item instanceof DTO) {
+                $item->setETag($eTag);
+            }
+
+            $items[] = $item;
+        }
+
+        return $items;
+    }
+
+    private function buildSerializer(): Serializer
     {
         $extractor = new PropertyInfoExtractor([], [new PhpDocExtractor()]);
         $normalizers = [
@@ -31,15 +86,6 @@ trait DeserializerTrait
             new ArrayDenormalizer(),
         ];
 
-        $encoders = [new JsonEncoder()];
-        $serializer = new Serializer($normalizers, $encoders);
-
-        $result = $serializer->deserialize($payload, $dto, 'json');
-
-        if ($eTag !== null && $result instanceof DTO) {
-            $result->setETag($eTag);
-        }
-
-        return $result;
+        return new Serializer($normalizers, [new JsonEncoder()]);
     }
 }

@@ -11,6 +11,9 @@ use Symfony\Component\Serializer\Serializer;
 
 trait SerializerTrait
 {
+    /**
+     * @param object|array<int, object> $payload
+     */
     private function serialize(object|array $payload): string
     {
         $dateCallback = function (

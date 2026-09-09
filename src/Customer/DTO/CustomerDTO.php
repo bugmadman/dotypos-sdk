@@ -34,6 +34,7 @@ final class CustomerDTO extends DTO
     public ?string $note = null;
     public string $phone;
     public float $points;
+    /** @var string[] */
     public array $tags;
     public string $vatId;
     public string $versionDate;

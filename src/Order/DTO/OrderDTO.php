@@ -53,6 +53,7 @@ final class OrderDTO extends DTO
     public int $points;
     public ?string $printData;
     public string $status;
+    /** @var string[] */
     public array $tags;
     public float $tipAmount;
     public float $totalValueRounded;

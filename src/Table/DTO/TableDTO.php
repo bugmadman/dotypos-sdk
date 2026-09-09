@@ -17,6 +17,7 @@ final class TableDTO
     public float $positionY;
     public int $rotation;
     public int $seats;
+    /** @var string[] */
     public array $tags;
 //    From enum SQUARE, SQUARE6, CIRCLE2, CIRCLE4, DELIVERY, CHAIR_SINGLE, ROUND, DOOR, GENERIC, CAR1, CAR2
     public string $type;

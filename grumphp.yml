@@ -6,3 +6,5 @@ grumphp:
             exclude: ['vendor']
         phpcs:
             standard: []
+        phpstan:
+            memory_limit: "-1"

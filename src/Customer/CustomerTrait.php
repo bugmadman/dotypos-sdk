@@ -69,8 +69,8 @@ trait CustomerTrait
     /**
      * Creates customers on the server based on the provided payload.
      *
-     * @param array $payload An array of customer data to create.
-     * @return array An array of created customer objects.
+     * @param CustomerVO[] $payload An array of customer data to create.
+     * @return CustomerDTO[] An array of created customer objects.
      * @throws \Exception if there is an error during the request.
      */
     public function createCustomers(array $payload): array
@@ -83,7 +83,7 @@ trait CustomerTrait
         );
         $response = $this->getHttpClient()->sendRequest($request);
 
-        return $this->deserialize($response->data, CustomerDTO::class . '[]');
+        return $this->deserializeMany($response->data, CustomerDTO::class);
     }
 
     /**
@@ -118,7 +118,7 @@ trait CustomerTrait
      *
      * @param CustomerVO[] $payload An array of customer data to replace.
      * @param string $eTag The ETag header value used for optimistic concurrency control.
-     * @return CustomerDTO[]\ An array of deserialized response data as CustomerDTO objects.
+     * @return CustomerDTO[] An array of deserialized response data as CustomerDTO objects.
      * @throws \Exception
      */
     public function replaceCustomers(array $payload, string $eTag): array
@@ -132,7 +132,7 @@ trait CustomerTrait
         );
         $response = $this->getHttpClient()->sendRequest($request);
 
-        return $this->deserialize($response->data, CustomerDTO::class . '[]');
+        return $this->deserializeMany($response->data, CustomerDTO::class);
     }
 
     /**

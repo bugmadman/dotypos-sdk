@@ -7,7 +7,7 @@ final readonly class EndpointVO
     public function __construct(
         private string $url,
         private HttpMethod $requestsMethod,
-        private ?string $path = null,
+        private string $path = '',
     ) {
     }
 
@@ -21,7 +21,7 @@ final readonly class EndpointVO
         return $this->requestsMethod;
     }
 
-    public function getPath(): ?string
+    public function getPath(): string
     {
         return $this->path;
     }

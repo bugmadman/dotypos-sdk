@@ -67,7 +67,7 @@ trait DiscountGroupTrait
         );
         $response = $this->getHttpClient()->sendRequest($request);
 
-        return $this->deserialize($response->data, DiscountGroupDTO::class . '[]');
+        return $this->deserializeMany($response->data, DiscountGroupDTO::class);
     }
 
     public function replaceDiscountGroup(DiscountGroupVO $payload, string $eTag): DiscountGroupDTO
@@ -106,10 +106,10 @@ trait DiscountGroupTrait
         );
         $response = $this->getHttpClient()->sendRequest($request);
 
-        return $this->deserialize($response->data, DiscountGroupDTO::class . '[]');
+        return $this->deserializeMany($response->data, DiscountGroupDTO::class);
     }
 
-    public function deleteDiscountGroup(int $id)
+    public function deleteDiscountGroup(int $id): DiscountGroupDTO
     {
         $request = new RequestVO(
             uri: $this->getEndpoint()->deleteDiscountGroup()->getUrl(),
