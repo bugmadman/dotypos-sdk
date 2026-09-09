@@ -5,7 +5,7 @@ namespace BMM\DotyposSdk\Warehouse\DTO;
 final class WarehouseDTO
 {
     public int $_cloudId;
-    public ?string $barcode;
+    public ?string $barcode = null;
     public bool $deleted;
     public bool $enabled;
     public string $hexColor;

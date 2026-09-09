@@ -5,5 +5,5 @@ namespace BMM\DotyposSdk\Infrastructure\HttpClient\DTO;
 final class ResponseDTO
 {
     public string $data;
-    public ?string $etag;
+    public ?string $etag = null;
 }

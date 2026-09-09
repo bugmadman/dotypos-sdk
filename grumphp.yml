@@ -8,3 +8,5 @@ grumphp:
             standard: []
         phpstan:
             memory_limit: "-1"
+        rector:
+            clear_cache: true

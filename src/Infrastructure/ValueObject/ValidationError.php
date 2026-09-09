@@ -4,7 +4,7 @@ namespace BMM\DotyposSdk\Infrastructure\ValueObject;
 
 use Symfony\Component\Validator\ConstraintViolationInterface;
 
-final class ValidationError
+final readonly class ValidationError
 {
     public function __construct(
         private string $parameter,

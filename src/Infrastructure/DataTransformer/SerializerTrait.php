@@ -16,15 +16,7 @@ trait SerializerTrait
      */
     private function serialize(object|array $payload): string
     {
-        $dateCallback = function (
-            object $innerObject,
-            object $_outerObject,
-            string $_attributeName,
-            ?string $_format = null,
-            array $_context = []
-        ): string {
-            return $innerObject instanceof \DateTimeImmutable ? $innerObject->format(\DateTimeImmutable::ATOM) : '';
-        };
+        $dateCallback = (fn(object $innerObject, object $_outerObject, string $_attributeName, ?string $_format = null, array $_context = []): string => $innerObject instanceof \DateTimeImmutable ? $innerObject->format(\DateTimeImmutable::ATOM) : '');
 
         $defaultContext = [
             AbstractNormalizer::CALLBACKS => [
