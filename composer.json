@@ -33,7 +33,8 @@
         "php-parallel-lint/php-parallel-lint": "^1.4",
         "phpstan/phpstan": "^2",
         "rector/rector": "^2",
-        "phpstan/phpstan-strict-rules": "^2.0"
+        "phpstan/phpstan-strict-rules": "^2.0",
+        "phpstan/phpstan-deprecation-rules": "^2.0"
     },
     "config": {
         "allow-plugins": {
