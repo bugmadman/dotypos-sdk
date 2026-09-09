@@ -34,7 +34,8 @@
         "phpstan/phpstan": "^2",
         "rector/rector": "^2",
         "phpstan/phpstan-strict-rules": "^2.0",
-        "phpstan/phpstan-deprecation-rules": "^2.0"
+        "phpstan/phpstan-deprecation-rules": "^2.0",
+        "roave/security-advisories": "dev-latest"
     },
     "config": {
         "allow-plugins": {
