@@ -2,6 +2,9 @@ grumphp:
     tasks:
         composer:
             strict: true
+        composer_normalize:
+            indent_size: 4
+            indent_style: space
         securitychecker_composeraudit: ~
         phplint:
             exclude: ['vendor']

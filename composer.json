@@ -1,44 +1,51 @@
 {
     "name": "bmm/dotypos-sdk",
     "description": "PHP SDK for the Dotypos API",
-    "type": "library",
     "license": "MIT",
-    "keywords": ["dotypos", "pos", "sdk", "api"],
-    "homepage": "https://github.com/bugmadman/dotypos-sdk",
-    "minimum-stability": "stable",
-    "autoload": {
-        "psr-4": {
-            "BMM\\DotyposSdk\\": "src/"
-        }
-    },
+    "type": "library",
+    "keywords": [
+        "dotypos",
+        "pos",
+        "sdk",
+        "api"
+    ],
     "authors": [
         {
             "name": "Nikolay Tyurin",
             "email": "t608833175@gmail.com"
         }
     ],
+    "homepage": "https://github.com/bugmadman/dotypos-sdk",
     "require": {
         "php": ">=8.2",
-        "symfony/validator": "^7.4",
+        "phpdocumentor/reflection-docblock": "^6.0",
         "symfony/http-client": "^7.4",
         "symfony/http-client-contracts": "^3.5",
-        "symfony/serializer": "^7.4",
         "symfony/property-access": "^7.4",
         "symfony/property-info": "^7.4",
-        "phpdocumentor/reflection-docblock": "^6.0"
+        "symfony/serializer": "^7.4",
+        "symfony/validator": "^7.4"
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "^3.11",
-        "phpro/grumphp": "^2",
+        "ergebnis/composer-normalize": "^2.53",
         "php-parallel-lint/php-parallel-lint": "^1.4",
+        "phpro/grumphp": "^2",
         "phpstan/phpstan": "^2",
-        "rector/rector": "^2",
-        "phpstan/phpstan-strict-rules": "^2.0",
         "phpstan/phpstan-deprecation-rules": "^2.0",
-        "roave/security-advisories": "dev-latest"
+        "phpstan/phpstan-strict-rules": "^2.0",
+        "rector/rector": "^2",
+        "roave/security-advisories": "dev-latest",
+        "squizlabs/php_codesniffer": "^3.11"
+    },
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "BMM\\DotyposSdk\\": "src/"
+        }
     },
     "config": {
         "allow-plugins": {
+            "ergebnis/composer-normalize": true,
             "phpro/grumphp": true
         }
     }
