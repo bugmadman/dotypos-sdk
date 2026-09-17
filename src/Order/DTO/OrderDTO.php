@@ -32,6 +32,7 @@ final class OrderDTO extends DTO
     public ?string $externalId = null;
     public ?string $fik = null;
     public int $flags;
+    public int $guestCount;
     public int $id;
     public int $itemCount;
     public float $locationAccuracy;

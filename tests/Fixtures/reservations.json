@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "_branchId": "1",
+        "_cloudId": "2",
+        "_customerId": 3,
+        "_employeeId": 4,
+        "_tableId": 5,
+        "status": "CONFIRMED",
+        "startDate": "2026-01-01T10:00:00+0000",
+        "endDate": "2026-01-01T12:00:00+0000",
+        "created": "2026-01-01T00:00:00+0000",
+        "versionDate": "2026-01-01T00:00:00+0000",
+        "seats": 2,
+        "note": null,
+        "flags": 0
+    }
+]
