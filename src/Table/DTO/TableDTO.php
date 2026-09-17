@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace BMM\DotyposSdk\Table\DTO;
 
+use BMM\DotyposSdk\Infrastructure\DTO\DTO;
 use BMM\DotyposSdk\Table\TableType;
 
-final class TableDTO
+final class TableDTO extends DTO
 {
     public string $_branchId;
     public string $_cloudId;

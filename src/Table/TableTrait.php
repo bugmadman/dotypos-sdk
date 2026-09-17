@@ -8,15 +8,18 @@ use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\FilterVO;
 use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\PaginationVO;
 use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\RequestVO;
 use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\SortVO;
-use BMM\DotyposSdk\Table\DTO\TablesDTO;
+use BMM\DotyposSdk\Table\DTO\TableDTO;
 
 trait TableTrait
 {
+    /**
+     * @return TableDTO[]
+     */
     public function getTables(
         ?PaginationVO $pagination = null,
         ?FilterVO $filter = null,
         ?SortVO $sort = null,
-    ): TablesDTO {
+    ): array {
         $request = new RequestVO(
             uri: $this->getEndpoint()->getTables()->getUrl(),
             path: $this->getEndpoint()->getTables()->getPath(),
@@ -27,6 +30,6 @@ trait TableTrait
         );
         $response = $this->getHttpClient()->sendRequest($request);
 
-        return $this->deserialize($response->data, TablesDTO::class, $response->etag);
+        return $this->deserializeMany($response->data, TableDTO::class, $response->etag);
     }
 }
