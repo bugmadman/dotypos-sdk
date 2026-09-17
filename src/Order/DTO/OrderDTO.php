@@ -43,7 +43,7 @@ final class OrderDTO extends DTO
     public bool $paid;
     public bool $parked;
     public ?string $pkp = null;
-    public int $points;
+    public float $points;
     public ?string $printData = null;
     public OrderStatus $status;
     /** @var string[] */

@@ -9,7 +9,6 @@ use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\PaginationVO;
 use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\RequestVO;
 use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\SortVO;
 use BMM\DotyposSdk\OrderItem\DTO\OrderItemDTO;
-use BMM\DotyposSdk\OrderItem\DTO\OrderItemsDTO;
 
 trait OrderItemTrait
 {
@@ -22,14 +21,17 @@ trait OrderItemTrait
         );
         $response = $this->getHttpClient()->sendRequest($request);
 
-        return $this->deserialize($response->data, OrderItemDTO::class);
+        return $this->deserialize($response->data, OrderItemDTO::class, $response->etag);
     }
 
+    /**
+     * @return OrderItemDTO[]
+     */
     public function getOrderItems(
         ?PaginationVO $pagination = null,
         ?FilterVO $filter = null,
         ?SortVO $sort = null,
-    ): OrderItemsDTO {
+    ): array {
         $request = new RequestVO(
             uri: $this->getEndpoint()->getOrderItems()->getUrl(),
             path: $this->getEndpoint()->getOrderItems()->getPath(),
@@ -40,6 +42,6 @@ trait OrderItemTrait
         );
         $response = $this->getHttpClient()->sendRequest($request);
 
-        return $this->deserialize($response->data, OrderItemsDTO::class);
+        return $this->deserializeMany($response->data, OrderItemDTO::class, $response->etag);
     }
 }
