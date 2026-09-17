@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace BMM\DotyposSdk\Branch\DTO;
 
-final class BranchDTO
+use BMM\DotyposSdk\Infrastructure\DTO\DTO;
+
+final class BranchDTO extends DTO
 {
     public int $_cloudId;
     public string $created;
