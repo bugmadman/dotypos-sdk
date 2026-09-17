@@ -17,17 +17,24 @@ final readonly class CustomerVO extends ValueObject
         private ?int $_discountGroupId = null,
         private ?int $_sellerId = null,
         private ?string $addressLine1 = '',
+        private ?string $addressLine2 = null,
         private ?string $barcode = '',
+        private ?string $birthday = null,
+        private ?string $city = null,
         private ?string $companyId = '',
         private ?string $companyId2 = null,
         private ?string $companyName = '',
+        private ?string $country = null,
         private ?bool $display = true,
         private ?string $email = '',
+        private ?string $expireDate = null,
+        private ?string $externalId = null,
         private ?string $firstName = '',
         private ?string $headerPrint = '',
         #[Assert\Regex('/^#[0-9A-Fa-f]{6}$/')]
         private ?string $hexColor = '#000000',
         private ?string $internalNote = '',
+        private ?string $note = null,
         private ?string $phone = '',
         private ?float $points = 0,
         private ?array $tags = [],
@@ -69,9 +76,24 @@ final readonly class CustomerVO extends ValueObject
         return $this->addressLine1;
     }
 
+    public function getAddressLine2(): ?string
+    {
+        return $this->addressLine2;
+    }
+
     public function getBarcode(): ?string
     {
         return $this->barcode;
+    }
+
+    public function getBirthday(): ?string
+    {
+        return $this->birthday;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
     }
 
     public function getCompanyId(): ?string
@@ -89,6 +111,11 @@ final readonly class CustomerVO extends ValueObject
         return $this->companyName;
     }
 
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
     public function getDisplay(): ?bool
     {
         return $this->display;
@@ -97,6 +124,16 @@ final readonly class CustomerVO extends ValueObject
     public function getEmail(): ?string
     {
         return $this->email;
+    }
+
+    public function getExpireDate(): ?string
+    {
+        return $this->expireDate;
+    }
+
+    public function getExternalId(): ?string
+    {
+        return $this->externalId;
     }
 
     public function getFirstName(): ?string
@@ -117,6 +154,11 @@ final readonly class CustomerVO extends ValueObject
     public function getInternalNote(): ?string
     {
         return $this->internalNote;
+    }
+
+    public function getNote(): ?string
+    {
+        return $this->note;
     }
 
     public function getPhone(): ?string
