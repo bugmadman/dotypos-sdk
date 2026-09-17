@@ -17,6 +17,7 @@ final readonly class CustomerVO extends ValueObject
         private ?string $addressLine1 = '',
         private ?string $barcode = '',
         private ?string $companyId = '',
+        private ?string $companyId2 = null,
         private ?string $companyName = '',
         private ?bool $display = true,
         private ?string $email = '',
@@ -64,6 +65,11 @@ final readonly class CustomerVO extends ValueObject
     public function getCompanyId(): ?string
     {
         return $this->companyId;
+    }
+
+    public function getCompanyId2(): ?string
+    {
+        return $this->companyId2;
     }
 
     public function getCompanyName(): ?string

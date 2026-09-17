@@ -17,6 +17,7 @@ final class CustomerDTO extends DTO
     public ?string $birthday = null;
     public ?string $city = null;
     public string $companyId;
+    public ?string $companyId2 = null;
     public string $companyName;
     public ?string $country = null;
     public string $created;
@@ -26,13 +27,13 @@ final class CustomerDTO extends DTO
     public ?string $expireDate = null;
     public ?string $externalId = null;
     public string $firstName;
-    public string $flags;
+    public int $flags;
     public string $headerPrint;
     public string $hexColor;
     public int $id;
     public string $internalNote;
     public string $lastName;
-    public int $modifiedBy;
+    public ?string $modifiedBy = null;
     public ?string $note = null;
     public string $phone;
     public float $points;

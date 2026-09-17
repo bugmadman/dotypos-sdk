@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace BMM\DotyposSdk\Customer;
 
 use BMM\DotyposSdk\Customer\DTO\CustomerDTO;
-use BMM\DotyposSdk\Customer\DTO\CustomersDTO;
 use BMM\DotyposSdk\Customer\ValueObject\CustomerVO;
 use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\FilterVO;
 use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\PaginationVO;
@@ -39,14 +38,14 @@ trait CustomerTrait
      * @param ?PaginationVO $pagination Pagination options for the request.
      * @param ?FilterVO $filter Filter conditions applied to the list.
      * @param ?SortVO $sort Sort order applied to the list.
-     * @return CustomersDTO The retrieved list of customers.
+     * @return CustomerDTO[] The retrieved list of customers.
      * @throws \Exception
      */
     public function getCustomers(
         ?PaginationVO $pagination = null,
         ?FilterVO $filter = null,
         ?SortVO $sort = null,
-    ): CustomersDTO {
+    ): array {
         $request = new RequestVO(
             uri: $this->getEndpoint()->getCustomers()->getUrl(),
             path: $this->getEndpoint()->getCustomers()->getPath(),
@@ -57,7 +56,7 @@ trait CustomerTrait
         );
         $response = $this->getHttpClient()->sendRequest($request);
 
-        return $this->deserialize($response->data, CustomersDTO::class, $response->etag);
+        return $this->deserializeMany($response->data, CustomerDTO::class, $response->etag);
     }
 
     /**
@@ -91,7 +90,7 @@ trait CustomerTrait
         );
         $response = $this->getHttpClient()->sendRequest($request);
 
-        return $this->deserializeMany($response->data, CustomerDTO::class);
+        return $this->deserializeMany($response->data, CustomerDTO::class, $response->etag);
     }
 
     /**
@@ -118,7 +117,7 @@ trait CustomerTrait
         );
         $response = $this->getHttpClient()->sendRequest($request);
 
-        return $this->deserialize($response->data, CustomerDTO::class);
+        return $this->deserialize($response->data, CustomerDTO::class, $response->etag);
     }
 
     /**
@@ -140,7 +139,7 @@ trait CustomerTrait
         );
         $response = $this->getHttpClient()->sendRequest($request);
 
-        return $this->deserializeMany($response->data, CustomerDTO::class);
+        return $this->deserializeMany($response->data, CustomerDTO::class, $response->etag);
     }
 
     /**
@@ -159,6 +158,6 @@ trait CustomerTrait
         );
         $response = $this->getHttpClient()->sendRequest($request);
 
-        return $this->deserialize($response->data, CustomerDTO::class);
+        return $this->deserialize($response->data, CustomerDTO::class, $response->etag);
     }
 }
