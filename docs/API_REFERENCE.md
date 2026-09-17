@@ -73,8 +73,7 @@ but see the per-domain check below for each domain — in practice, the specific
 endpoints on entity pages in the documentation are shown as a **bare JSON array**
 without this wrapper (see the notes in each section). It's possible the wrapper
 applies only in some cases, or this is a mismatch between the general description and
-the specific examples on the entity docs — the fact is recorded as observed; analysis
-is tracked in the plan (item 5.1).
+the specific examples on the entity docs — the fact is recorded as observed.
 
 ### ETag
 
@@ -102,9 +101,8 @@ specific fields:
   strict standard."
 
 The timestamp format, as observed in examples and field captions on the entity pages,
-is uniformly labeled just `timestamp` with no explicit format — when implementing
-(plan item 5.1b) the format needs to be confirmed empirically (against a real API
-response), not just from this page.
+is uniformly labeled just `timestamp` with no explicit format — confirming it requires
+an empirical check against a real API response, not just this page.
 
 ---
 
@@ -308,12 +306,11 @@ response), not just from this page.
   `include` for nested entities (`orderItems`, `moneyLogs`).
 - ETag: list GET and single GET — `If-None-Match`. Create/replace/delete not
   applicable (read-only).
-- Response shape: per the plan's note (finding 5.1), `GET .../orders` is shown in the
-  documentation as a **bare array** of Order objects with no pagination wrapper in the
-  response body (pagination metadata for Order/OrderItem is not computed at all per
-  the general `paging/` section — "omit total counts to optimize performance,"
-  iterate based on the actual item count per page). Matches the `OrdersDTO` finding
-  in the plan.
+- Response shape: `GET .../orders` is shown in the documentation as a **bare array**
+  of Order objects with no pagination wrapper in the response body (pagination
+  metadata for Order/OrderItem is not computed at all per the general `paging/`
+  section — "omit total counts to optimize performance," iterate based on the actual
+  item count per page).
 
 ---
 
@@ -420,7 +417,7 @@ response), not just from this page.
 - ETag: list GET and single GET — `If-None-Match`. Read-only, create/replace/delete
   not applicable.
 - Response shape: **bare array** of OrderItem objects, each with a nested
-  `orderItemCustomizations` array. Matches the `OrderItemsDTO` finding in the plan.
+  `orderItemCustomizations` array.
 
 ---
 
@@ -458,13 +455,9 @@ response), not just from this page.
 - Pagination/Filter/Sort: standard, on the list endpoint. Batch operations
   (POST/PUT) — maximum 100 items per request.
 - ETag: `If-None-Match` on GET (list and single); `If-Match` on PUT/PATCH/DELETE.
-- **Response shape (key check per the plan's task):** the documentation explicitly
-  describes the `GET .../reservations` list response as a **bare JSON array**
-  (`[{ Reservation schema }, ...]`), **with no pagination wrapper object**. This
-  confirms the finding from the plan ("Findings" section, item 5.1): the SDK class
-  `ReservationsDTO` — a wrapper object with `PaginationTraitDTO` — does not match the
-  actual API response shape per the documentation. This is a real discrepancy, not a
-  guess.
+- **Response shape:** the documentation explicitly describes the
+  `GET .../reservations` list response as a **bare JSON array**
+  (`[{ Reservation schema }, ...]`), **with no pagination wrapper object**.
 
 ---
 
@@ -479,12 +472,6 @@ response), not just from this page.
   | OPTIONS | `/v2/clouds/:cloudId/tables`, `.../:tableId` |
 
   Read-only — there is no create/replace/delete for Table in the documentation.
-  **Check per the plan's task (item 5.5): the single `GET table/:id` endpoint DOES
-  exist in the documentation** (`GET /v2/clouds/:cloudId/tables/:tableId`) — that is,
-  it is documented, but in the current `Endpoint.php` in the SDK only the list is
-  implemented (`GetTables`); there is no single `getTable(id)`. This is a real gap
-  in the SDK relative to the documentation (for Plan B / item 5.5), not just a
-  hypothesis.
 - Fields:
   | Field | Type | Notes/enum |
   |---|---|---|
@@ -500,19 +487,13 @@ response), not just from this page.
   | `positionX`, `positionY`, `rotation` | int | |
   | `seats` | int | |
   | `tags` | string[] | |
-  | `type` | enum | `SQUARE`, `SQUARE6`, `CIRCLE2`, `CIRCLE4`, `DELIVERY`, `CHAIR_SINGLE`, `ROUND`, `DOOR`, `GENERIC`, `CAR1`, `CAR2` (matches the already-implemented `TableType`) |
+  | `type` | enum | `SQUARE`, `SQUARE6`, `CIRCLE2`, `CIRCLE4`, `DELIVERY`, `CHAIR_SINGLE`, `ROUND`, `DOOR`, `GENERIC`, `CAR1`, `CAR2` |
   | `versionDate` | timestamp | |
 - Pagination/Filter/Sort: standard, on the list endpoint.
-- **ETag (key check per the plan's task, item 5.5):** the documentation shows
-  `If-None-Match` support **on both the list and single GET** endpoints for Table —
-  meaning Table **is versioned via ETag** in the documentation, contrary to the plan's
-  hypothesis that "the resource might not be versioned at all." This means the
-  absence of `extends DTO` (and, correspondingly, `setETag()`) on `TableDTO` in the
-  code is likely a real gap, not a deliberate decision, since the API returns an
-  ETag at least for the single GET (which isn't implemented in the code yet — see
-  the point above).
+- ETag: `If-None-Match` support on both the list and single GET endpoints for Table —
+  the resource is versioned via ETag.
 - Response shape: **bare array** of Table objects in the list response (no pagination
-  wrapper). Matches the `TablesDTO` finding in the plan.
+  wrapper).
 
 ---
 
@@ -537,11 +518,6 @@ response), not just from this page.
   | POST | `/v2/clouds/:cloudId/warehouses/:warehouseId/stock-takings` — stock-taking/inventory count |
   | POST | `/v2/clouds/:cloudId/warehouses/:warehouseId/stock-taking-dates` — dates of the most recent stock-takings |
 
-  **All of these sub-endpoints (`products`, `stockups`, `transfers`, `sales`,
-  `stock-takings`, `stock-taking-dates`) exist in the documentation, but almost
-  certainly not in the current `src/Warehouse`** (per the plan, the SDK covers only
-  basic Warehouse CRUD) — a candidate for Plan B, to be checked against `src/`
-  separately.
 - Fields (Warehouse):
   | Field | Type | Notes/enum |
   |---|---|---|
@@ -560,9 +536,8 @@ response), not just from this page.
 - Pagination/Filter/Sort: standard, on the GET list endpoints.
 - ETag: `If-None-Match` on GET (list and single); `If-Match` on create/update/delete.
 - Response shape: **bare array** on the warehouse GET list endpoints
-  (`[{...}, {...}]`). Matches the `WarehousesDTO` finding in the plan. Separately:
-  `stock-taking-dates` (POST) also returns a bare array of objects with the fields
-  `_productId` and `lastStockTakingDate`.
+  (`[{...}, {...}]`). Separately: `stock-taking-dates` (POST) also returns a bare
+  array of objects with the fields `_productId` and `lastStockTakingDate`.
 
 ---
 
@@ -583,9 +558,9 @@ response), not just from this page.
   | `id` | long | |
   | `_cloudId` | int | |
   | `_warehouseId` | long? | |
-  | `method` | enum | `POST`, `GET` — `WebhookVO::$method`/`WebhookDTO::$method` use the existing `HttpMethod` enum |
+  | `method` | enum | `POST`, `GET` |
   | `url` | string | regex-validated |
-  | `payloadEntity` | enum | `STOCKLOG`, `POINTSLOG`, `PRODUCT`, `ORDERBEAN`, `RESERVATION`, `CUSTOMER` — `WebhookVO::$payloadEntity`/`WebhookDTO::$payloadEntity` use `WebhookPayloadEntity` |
+  | `payloadEntity` | enum | `STOCKLOG`, `POINTSLOG`, `PRODUCT`, `ORDERBEAN`, `RESERVATION`, `CUSTOMER` |
   | `payloadVersion` | enum | `V1` |
   | `versionDate` | timestamp? | |
 - Pagination/Filter/Sort: **not supported** (not explicitly mentioned in the
@@ -612,7 +587,7 @@ response), not just from this page.
   | `client_id` | application identifier |
   | `timestamp` | Unix time in seconds |
   | `signature` | HMAC-SHA256(`timestamp` as a string, key = `client_secret`), 64-character hex |
-  | `scope` | as of the scan, only `*` is supported. `ConnectUrlVO::$scope` deliberately stays a plain string, not an enum — see plan item 2 |
+  | `scope` | as of the scan, only `*` is supported |
   | `redirect_uri` | where to redirect after authorization |
   | `state` | optional, CSRF token |
 - Response: redirect to `redirect_uri?token={refreshToken}&cloudid={cloudId}&state={state}`.
@@ -639,8 +614,8 @@ Not applicable — these are not entity endpoints, but an internal auth flow.
 
 ## Summary table: list-endpoint response shape (bare array vs. wrapper)
 
-Per the task — a lightweight check of the response shape for each list endpoint, as
-shown in the documentation (not as observed from a live API):
+A lightweight check of the response shape for each list endpoint, as shown in the
+documentation (not as observed from a live API):
 
 | Domain | List-response shape per the documentation |
 |---|---|
@@ -649,7 +624,7 @@ shown in the documentation (not as observed from a live API):
 | Discount group | bare array |
 | Order | bare array |
 | Order item | bare array |
-| Reservation | bare array (confirms the plan's finding) |
+| Reservation | bare array |
 | Table | bare array |
 | Warehouse | bare array |
 
@@ -659,5 +634,5 @@ checked entity pages show a JSON response example with such a wrapper — it's e
 a bare array everywhere, or (Branch) no example is given at all. Possible
 explanations (unverified, hypotheses only): the wrapper describes some other/legacy
 response mode, or the entity pages simply don't include full pagination metadata in
-their examples. Analysis is the subject of plan item 5.1 (verification via a real
-`MockHttpClient`/live request, not documentation alone).
+their examples. Confirming this requires a real `MockHttpClient`/live request against
+the API, not documentation alone.
