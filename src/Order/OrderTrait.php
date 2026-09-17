@@ -21,9 +21,8 @@ trait OrderTrait
             requestsMethod: $this->getEndpoint()->getOrder()->getRequestsMethod(),
         );
         $response = $this->getHttpClient()->sendRequest($request);
-        $order = $this->deserialize($response->data, OrderDTO::class, $response->etag);
 
-        return $order;
+        return $this->deserialize($response->data, OrderDTO::class, $response->etag);
     }
 
     public function getOrders(?PaginationVO $pagination = null, ?FilterVO $filter = null, ?SortVO $sort = null): OrdersDTO

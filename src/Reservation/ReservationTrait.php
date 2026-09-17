@@ -22,9 +22,8 @@ trait ReservationTrait
             requestsMethod: $this->getEndpoint()->getReservation()->getRequestsMethod(),
         );
         $response = $this->getHttpClient()->sendRequest($request);
-        $reservation = $this->deserialize($response->data, ReservationDTO::class, $response->etag);
 
-        return $reservation;
+        return $this->deserialize($response->data, ReservationDTO::class, $response->etag);
     }
 
     public function getReservations(

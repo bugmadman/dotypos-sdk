@@ -29,9 +29,8 @@ trait CustomerTrait
             requestsMethod: $this->getEndpoint()->getCustomer()->getRequestsMethod(),
         );
         $response = $this->getHttpClient()->sendRequest($request);
-        $customer = $this->deserialize($response->data, CustomerDTO::class, $response->etag);
 
-        return $customer;
+        return $this->deserialize($response->data, CustomerDTO::class, $response->etag);
     }
 
     /**

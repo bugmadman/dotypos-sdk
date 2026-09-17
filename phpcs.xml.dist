@@ -7,7 +7,19 @@
     <arg name="extensions" value="php"/>
     <arg value="np"/>
 
+    <config name="installed_paths" value="../../slevomat/coding-standard"/>
+
     <file>src</file>
 
     <rule ref="PSR12"/>
+
+    <rule ref="SlevomatCodingStandard.Variables.UselessVariable"/>
+
+    <rule ref="SlevomatCodingStandard.ControlStructures.JumpStatementsSpacing">
+        <properties>
+            <property name="jumpStatements" type="array">
+                <element value="return"/>
+            </property>
+        </properties>
+    </rule>
 </ruleset>

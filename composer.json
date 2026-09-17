@@ -35,6 +35,7 @@
         "phpstan/phpstan-strict-rules": "^2.0",
         "rector/rector": "^2",
         "roave/security-advisories": "dev-latest",
+        "slevomat/coding-standard": "^8.22",
         "squizlabs/php_codesniffer": "^3.11"
     },
     "minimum-stability": "stable",
@@ -45,6 +46,7 @@
     },
     "config": {
         "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": false,
             "ergebnis/composer-normalize": true,
             "phpro/grumphp": true
         }

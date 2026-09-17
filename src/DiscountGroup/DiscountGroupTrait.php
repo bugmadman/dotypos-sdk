@@ -22,9 +22,8 @@ trait DiscountGroupTrait
             requestsMethod: $this->getEndpoint()->getDiscountGroup()->getRequestsMethod(),
         );
         $response = $this->getHttpClient()->sendRequest($request);
-        $discountGroup = $this->deserialize($response->data, DiscountGroupDTO::class, $response->etag);
 
-        return $discountGroup;
+        return $this->deserialize($response->data, DiscountGroupDTO::class, $response->etag);
     }
 
     public function getDiscountGroups(
