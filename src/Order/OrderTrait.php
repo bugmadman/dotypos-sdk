@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace BMM\DotyposSdk\Order;
 
+use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\FilterVO;
 use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\PaginationVO;
 use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\RequestVO;
+use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\SortVO;
 use BMM\DotyposSdk\Order\DTO\OrdersDTO;
 use BMM\DotyposSdk\Order\DTO\OrderDTO;
 
@@ -24,18 +26,18 @@ trait OrderTrait
         return $order;
     }
 
-    public function getOrders(?PaginationVO $pagination): OrdersDTO
+    public function getOrders(?PaginationVO $pagination = null, ?FilterVO $filter = null, ?SortVO $sort = null): OrdersDTO
     {
         $request = new RequestVO(
             uri: $this->getEndpoint()->getOrders()->getUrl(),
             path: $this->getEndpoint()->getOrders()->getPath(),
             requestsMethod: $this->getEndpoint()->getOrders()->getRequestsMethod(),
-            pagination: $pagination
+            pagination: $pagination,
+            filter: $filter,
+            sort: $sort,
         );
         $response = $this->getHttpClient()->sendRequest($request);
-        $orders = $this->deserialize($response->data, OrdersDTO::class, $response->etag);
 
-//        TODO add support for page, limit, filter, sor
-        return $orders;
+        return $this->deserialize($response->data, OrdersDTO::class, $response->etag);
     }
 }

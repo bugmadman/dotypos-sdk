@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace BMM\DotyposSdk\Reservation;
 
+use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\FilterVO;
 use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\PaginationVO;
 use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\RequestVO;
+use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\SortVO;
 use BMM\DotyposSdk\Reservation\DTO\ReservationDTO;
 use BMM\DotyposSdk\Reservation\DTO\ReservationsDTO;
 use BMM\DotyposSdk\Reservation\ValueObject\ReservationVO;
@@ -25,19 +27,22 @@ trait ReservationTrait
         return $reservation;
     }
 
-    public function getReservations(?PaginationVO $pagination): ReservationsDTO
-    {
+    public function getReservations(
+        ?PaginationVO $pagination = null,
+        ?FilterVO $filter = null,
+        ?SortVO $sort = null,
+    ): ReservationsDTO {
         $request = new RequestVO(
             uri: $this->getEndpoint()->getReservations()->getUrl(),
             path: $this->getEndpoint()->getReservations()->getPath(),
             requestsMethod: $this->getEndpoint()->getReservations()->getRequestsMethod(),
-            pagination: $pagination
+            pagination: $pagination,
+            filter: $filter,
+            sort: $sort,
         );
         $response = $this->getHttpClient()->sendRequest($request);
-        $reservations = $this->deserialize($response->data, ReservationsDTO::class, $response->etag);
 
-//        TODO add support for page, limit, filter, sort
-        return $reservations;
+        return $this->deserialize($response->data, ReservationsDTO::class, $response->etag);
     }
 
     public function createReservation(ReservationVO $payload): ReservationDTO

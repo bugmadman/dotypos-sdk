@@ -7,8 +7,10 @@ namespace BMM\DotyposSdk\Customer;
 use BMM\DotyposSdk\Customer\DTO\CustomerDTO;
 use BMM\DotyposSdk\Customer\DTO\CustomersDTO;
 use BMM\DotyposSdk\Customer\ValueObject\CustomerVO;
+use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\FilterVO;
 use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\PaginationVO;
 use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\RequestVO;
+use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\SortVO;
 
 trait CustomerTrait
 {
@@ -36,22 +38,27 @@ trait CustomerTrait
      * Retrieves a list of customers from the server.
      *
      * @param ?PaginationVO $pagination Pagination options for the request.
+     * @param ?FilterVO $filter Filter conditions applied to the list.
+     * @param ?SortVO $sort Sort order applied to the list.
      * @return CustomersDTO The retrieved list of customers.
      * @throws \Exception
      */
-    public function getCustomers(?PaginationVO $pagination): CustomersDTO
-    {
+    public function getCustomers(
+        ?PaginationVO $pagination = null,
+        ?FilterVO $filter = null,
+        ?SortVO $sort = null,
+    ): CustomersDTO {
         $request = new RequestVO(
             uri: $this->getEndpoint()->getCustomers()->getUrl(),
             path: $this->getEndpoint()->getCustomers()->getPath(),
             requestsMethod: $this->getEndpoint()->getCustomers()->getRequestsMethod(),
-            pagination: $pagination
+            pagination: $pagination,
+            filter: $filter,
+            sort: $sort,
         );
         $response = $this->getHttpClient()->sendRequest($request);
-        $customers = $this->deserialize($response->data, CustomersDTO::class, $response->etag);
 
-//        TODO add support for page, limit, filter, sort
-        return $customers;
+        return $this->deserialize($response->data, CustomersDTO::class, $response->etag);
     }
 
     /**

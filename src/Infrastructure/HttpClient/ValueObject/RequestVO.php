@@ -15,6 +15,8 @@ final readonly class RequestVO
         private ?string $data = null,
         private ?string $eTag = null,
         private ?PaginationVO $pagination = null,
+        private ?FilterVO $filter = null,
+        private ?SortVO $sort = null,
     ) {
     }
 
@@ -46,5 +48,15 @@ final readonly class RequestVO
     public function getPagination(): ?PaginationVO
     {
         return $this->pagination;
+    }
+
+    public function getFilter(): ?FilterVO
+    {
+        return $this->filter;
+    }
+
+    public function getSort(): ?SortVO
+    {
+        return $this->sort;
     }
 }

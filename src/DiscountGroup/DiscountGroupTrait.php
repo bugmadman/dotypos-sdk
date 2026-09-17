@@ -7,8 +7,10 @@ namespace BMM\DotyposSdk\DiscountGroup;
 use BMM\DotyposSdk\DiscountGroup\DTO\DiscountGroupDTO;
 use BMM\DotyposSdk\DiscountGroup\DTO\DiscountGroupsDTO;
 use BMM\DotyposSdk\DiscountGroup\ValueObject\DiscountGroupVO;
+use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\FilterVO;
 use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\PaginationVO;
 use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\RequestVO;
+use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\SortVO;
 
 trait DiscountGroupTrait
 {
@@ -25,19 +27,22 @@ trait DiscountGroupTrait
         return $discountGroup;
     }
 
-    public function getDiscountGroups(?PaginationVO $pagination): DiscountGroupsDTO
-    {
+    public function getDiscountGroups(
+        ?PaginationVO $pagination = null,
+        ?FilterVO $filter = null,
+        ?SortVO $sort = null,
+    ): DiscountGroupsDTO {
         $request = new RequestVO(
             uri: $this->getEndpoint()->getDiscountGroups()->getUrl(),
             path: $this->getEndpoint()->getDiscountGroups()->getPath(),
             requestsMethod: $this->getEndpoint()->getDiscountGroups()->getRequestsMethod(),
-            pagination: $pagination
+            pagination: $pagination,
+            filter: $filter,
+            sort: $sort,
         );
         $response = $this->getHttpClient()->sendRequest($request);
-        $discountGroups = $this->deserialize($response->data, DiscountGroupsDTO::class, $response->etag);
 
-//        TODO add support for page, limit, filter, sor
-        return $discountGroups;
+        return $this->deserialize($response->data, DiscountGroupsDTO::class, $response->etag);
     }
 
     /**

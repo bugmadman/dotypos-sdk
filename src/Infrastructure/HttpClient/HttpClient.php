@@ -90,6 +90,12 @@ final readonly class HttpClient
             $options['query']['page'] = $payload->getPagination()->getPage();
             $options['query']['limit'] = $payload->getPagination()->getLimit();
         }
+        if ($payload->getFilter() !== null) {
+            $options['query']['filter'] = $payload->getFilter()->toQueryValue();
+        }
+        if ($payload->getSort() !== null) {
+            $options['query']['sort'] = $payload->getSort()->toQueryValue();
+        }
 
         $response = $this->client->request(
             $payload->getRequestsMethod()->value,
