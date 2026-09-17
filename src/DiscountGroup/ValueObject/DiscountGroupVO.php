@@ -11,7 +11,7 @@ final readonly class DiscountGroupVO extends ValueObject
     public function __construct(
         public string $name,
         public ?bool $display = true,
-        public ?int $discountPercent = 0,
+        public ?float $discountPercent = 0,
         public ?bool $deleted = false,
         public ?int $id = null,
         public ?string $externalId = null,
@@ -29,7 +29,7 @@ final readonly class DiscountGroupVO extends ValueObject
         return $this->display;
     }
 
-    public function getDiscountPercent(): ?int
+    public function getDiscountPercent(): ?float
     {
         return $this->discountPercent;
     }

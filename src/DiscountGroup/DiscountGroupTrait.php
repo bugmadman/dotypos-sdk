@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace BMM\DotyposSdk\DiscountGroup;
 
 use BMM\DotyposSdk\DiscountGroup\DTO\DiscountGroupDTO;
-use BMM\DotyposSdk\DiscountGroup\DTO\DiscountGroupsDTO;
 use BMM\DotyposSdk\DiscountGroup\ValueObject\DiscountGroupVO;
 use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\FilterVO;
 use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\PaginationVO;
@@ -26,11 +25,14 @@ trait DiscountGroupTrait
         return $this->deserialize($response->data, DiscountGroupDTO::class, $response->etag);
     }
 
+    /**
+     * @return DiscountGroupDTO[]
+     */
     public function getDiscountGroups(
         ?PaginationVO $pagination = null,
         ?FilterVO $filter = null,
         ?SortVO $sort = null,
-    ): DiscountGroupsDTO {
+    ): array {
         $request = new RequestVO(
             uri: $this->getEndpoint()->getDiscountGroups()->getUrl(),
             path: $this->getEndpoint()->getDiscountGroups()->getPath(),
@@ -41,7 +43,7 @@ trait DiscountGroupTrait
         );
         $response = $this->getHttpClient()->sendRequest($request);
 
-        return $this->deserialize($response->data, DiscountGroupsDTO::class, $response->etag);
+        return $this->deserializeMany($response->data, DiscountGroupDTO::class, $response->etag);
     }
 
     /**
@@ -73,7 +75,7 @@ trait DiscountGroupTrait
         );
         $response = $this->getHttpClient()->sendRequest($request);
 
-        return $this->deserializeMany($response->data, DiscountGroupDTO::class);
+        return $this->deserializeMany($response->data, DiscountGroupDTO::class, $response->etag);
     }
 
     public function replaceDiscountGroup(DiscountGroupVO $payload, string $eTag): DiscountGroupDTO
@@ -92,7 +94,7 @@ trait DiscountGroupTrait
         );
         $response = $this->getHttpClient()->sendRequest($request);
 
-        return $this->deserialize($response->data, DiscountGroupDTO::class);
+        return $this->deserialize($response->data, DiscountGroupDTO::class, $response->etag);
     }
 
     /**
@@ -112,7 +114,7 @@ trait DiscountGroupTrait
         );
         $response = $this->getHttpClient()->sendRequest($request);
 
-        return $this->deserializeMany($response->data, DiscountGroupDTO::class);
+        return $this->deserializeMany($response->data, DiscountGroupDTO::class, $response->etag);
     }
 
     public function deleteDiscountGroup(int $id): DiscountGroupDTO
@@ -124,6 +126,6 @@ trait DiscountGroupTrait
         );
         $response = $this->getHttpClient()->sendRequest($request);
 
-        return $this->deserialize($response->data, DiscountGroupDTO::class);
+        return $this->deserialize($response->data, DiscountGroupDTO::class, $response->etag);
     }
 }
