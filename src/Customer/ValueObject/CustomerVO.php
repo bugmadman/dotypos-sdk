@@ -14,6 +14,8 @@ final readonly class CustomerVO extends ValueObject
      */
     public function __construct(
         private string $lastName,
+        private ?int $_discountGroupId = null,
+        private ?int $_sellerId = null,
         private ?string $addressLine1 = '',
         private ?string $barcode = '',
         private ?string $companyId = '',
@@ -50,6 +52,16 @@ final readonly class CustomerVO extends ValueObject
     public function getLastName(): string
     {
         return $this->lastName;
+    }
+
+    public function getDiscountGroupId(): ?int
+    {
+        return $this->_discountGroupId;
+    }
+
+    public function getSellerId(): ?int
+    {
+        return $this->_sellerId;
     }
 
     public function getAddressLine1(): ?string
