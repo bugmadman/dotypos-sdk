@@ -9,7 +9,6 @@ use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\PaginationVO;
 use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\RequestVO;
 use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\SortVO;
 use BMM\DotyposSdk\Reservation\DTO\ReservationDTO;
-use BMM\DotyposSdk\Reservation\DTO\ReservationsDTO;
 use BMM\DotyposSdk\Reservation\ValueObject\ReservationVO;
 
 trait ReservationTrait
@@ -26,11 +25,14 @@ trait ReservationTrait
         return $this->deserialize($response->data, ReservationDTO::class, $response->etag);
     }
 
+    /**
+     * @return ReservationDTO[]
+     */
     public function getReservations(
         ?PaginationVO $pagination = null,
         ?FilterVO $filter = null,
         ?SortVO $sort = null,
-    ): ReservationsDTO {
+    ): array {
         $request = new RequestVO(
             uri: $this->getEndpoint()->getReservations()->getUrl(),
             path: $this->getEndpoint()->getReservations()->getPath(),
@@ -41,7 +43,7 @@ trait ReservationTrait
         );
         $response = $this->getHttpClient()->sendRequest($request);
 
-        return $this->deserialize($response->data, ReservationsDTO::class, $response->etag);
+        return $this->deserializeMany($response->data, ReservationDTO::class, $response->etag);
     }
 
     public function createReservation(ReservationVO $payload): ReservationDTO
@@ -66,7 +68,7 @@ trait ReservationTrait
         );
         $response = $this->getHttpClient()->sendRequest($request);
 
-        return $this->deserializeMany($response->data, ReservationDTO::class);
+        return $this->deserializeMany($response->data, ReservationDTO::class, $response->etag);
     }
 
     public function replaceReservation(ReservationVO $payload, string $eTag): ReservationDTO
@@ -85,7 +87,7 @@ trait ReservationTrait
         );
         $response = $this->getHttpClient()->sendRequest($request);
 
-        return $this->deserialize($response->data, ReservationDTO::class);
+        return $this->deserialize($response->data, ReservationDTO::class, $response->etag);
     }
 
     /**
@@ -103,7 +105,7 @@ trait ReservationTrait
         );
         $response = $this->getHttpClient()->sendRequest($request);
 
-        return $this->deserializeMany($response->data, ReservationDTO::class);
+        return $this->deserializeMany($response->data, ReservationDTO::class, $response->etag);
     }
 
     public function deleteReservation(int $id): ReservationDTO
@@ -115,6 +117,6 @@ trait ReservationTrait
         );
         $response = $this->getHttpClient()->sendRequest($request);
 
-        return $this->deserialize($response->data, ReservationDTO::class);
+        return $this->deserialize($response->data, ReservationDTO::class, $response->etag);
     }
 }

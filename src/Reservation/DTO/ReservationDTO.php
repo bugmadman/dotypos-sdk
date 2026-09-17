@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace BMM\DotyposSdk\Reservation\DTO;
 
 use BMM\DotyposSdk\Infrastructure\DTO\DTO;
+use BMM\DotyposSdk\Reservation\ReservationStatus;
 
 final class ReservationDTO extends DTO
 {
@@ -20,6 +21,6 @@ final class ReservationDTO extends DTO
     public ?string $note = null;
     public int $seats;
     public string $startDate;
-    public string $status;
+    public ReservationStatus $status;
     public string $versionDate;
 }
