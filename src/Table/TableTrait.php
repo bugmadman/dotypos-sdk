@@ -12,8 +12,11 @@ use BMM\DotyposSdk\Table\DTO\TablesDTO;
 
 trait TableTrait
 {
-    public function getTables(?PaginationVO $pagination = null, ?FilterVO $filter = null, ?SortVO $sort = null): TablesDTO
-    {
+    public function getTables(
+        ?PaginationVO $pagination = null,
+        ?FilterVO $filter = null,
+        ?SortVO $sort = null,
+    ): TablesDTO {
         $request = new RequestVO(
             uri: $this->getEndpoint()->getTables()->getUrl(),
             path: $this->getEndpoint()->getTables()->getPath(),

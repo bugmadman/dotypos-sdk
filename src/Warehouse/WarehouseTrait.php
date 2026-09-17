@@ -12,8 +12,11 @@ use BMM\DotyposSdk\Warehouse\DTO\WarehousesDTO;
 
 trait WarehouseTrait
 {
-    public function getWarehouses(?PaginationVO $pagination = null, ?FilterVO $filter = null, ?SortVO $sort = null): WarehousesDTO
-    {
+    public function getWarehouses(
+        ?PaginationVO $pagination = null,
+        ?FilterVO $filter = null,
+        ?SortVO $sort = null,
+    ): WarehousesDTO {
         $request = new RequestVO(
             uri: $this->getEndpoint()->getWarehouses()->getUrl(),
             path: $this->getEndpoint()->getWarehouses()->getPath(),

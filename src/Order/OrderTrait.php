@@ -25,8 +25,11 @@ trait OrderTrait
         return $this->deserialize($response->data, OrderDTO::class, $response->etag);
     }
 
-    public function getOrders(?PaginationVO $pagination = null, ?FilterVO $filter = null, ?SortVO $sort = null): OrdersDTO
-    {
+    public function getOrders(
+        ?PaginationVO $pagination = null,
+        ?FilterVO $filter = null,
+        ?SortVO $sort = null,
+    ): OrdersDTO {
         $request = new RequestVO(
             uri: $this->getEndpoint()->getOrders()->getUrl(),
             path: $this->getEndpoint()->getOrders()->getPath(),

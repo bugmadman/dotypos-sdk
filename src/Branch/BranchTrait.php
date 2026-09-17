@@ -12,8 +12,11 @@ use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\SortVO;
 
 trait BranchTrait
 {
-    public function getBranches(?PaginationVO $pagination = null, ?FilterVO $filter = null, ?SortVO $sort = null): BranchesDTO
-    {
+    public function getBranches(
+        ?PaginationVO $pagination = null,
+        ?FilterVO $filter = null,
+        ?SortVO $sort = null,
+    ): BranchesDTO {
         $request = new RequestVO(
             uri: $this->getEndpoint()->getBranches()->getUrl(),
             path: $this->getEndpoint()->getBranches()->getPath(),
