@@ -84,6 +84,7 @@ trait DeserializerTrait
         // that have no docblock at all.
         $extractor = new PropertyInfoExtractor([], [new PhpDocExtractor(), new ReflectionExtractor()]);
         $normalizers = [
+            new TolerantBackedEnumNormalizer(),
             new BackedEnumNormalizer(),
             new ObjectNormalizer(
                 null,

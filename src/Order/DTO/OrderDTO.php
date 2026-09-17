@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace BMM\DotyposSdk\Order\DTO;
 
 use BMM\DotyposSdk\Infrastructure\DTO\DTO;
+use BMM\DotyposSdk\Order\OrderStatus;
 
 final class OrderDTO extends DTO
 {
@@ -21,7 +22,7 @@ final class OrderDTO extends DTO
     public ?int $_tableId = null;
     public ?string $bkp = null;
     // TODO $canceledDate/$completed/$created/$locationDate/$updated/$versionDate below:
-    // date to DateTimeImmutable — см. пункт 5 плана (сверка схем API)
+    // date to DateTimeImmutable — см. docs/IMPLEMENTATION_PLAN.md, "После релиза"
     public ?string $canceledDate = null;
     public string $completed;
     public string $created;
@@ -44,7 +45,7 @@ final class OrderDTO extends DTO
     public ?string $pkp = null;
     public int $points;
     public ?string $printData = null;
-    public string $status;
+    public OrderStatus $status;
     /** @var string[] */
     public array $tags;
     public float $tipAmount;
