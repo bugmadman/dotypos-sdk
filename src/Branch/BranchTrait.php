@@ -12,6 +12,18 @@ use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\SortVO;
 
 trait BranchTrait
 {
+    public function getBranch(int $id): BranchDTO
+    {
+        $request = new RequestVO(
+            uri: $this->getEndpoint()->getBranch()->getUrl(),
+            path: $this->getEndpoint()->getBranch()->getPath() . '/' . $id,
+            requestsMethod: $this->getEndpoint()->getBranch()->getRequestsMethod(),
+        );
+        $response = $this->getHttpClient()->sendRequest($request);
+
+        return $this->deserialize($response->data, BranchDTO::class, $response->etag);
+    }
+
     /**
      * @return BranchDTO[]
      */
