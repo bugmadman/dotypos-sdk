@@ -12,6 +12,18 @@ use BMM\DotyposSdk\Table\DTO\TableDTO;
 
 trait TableTrait
 {
+    public function getTable(int $id): TableDTO
+    {
+        $request = new RequestVO(
+            uri: $this->getEndpoint()->getTable()->getUrl(),
+            path: $this->getEndpoint()->getTable()->getPath() . '/' . $id,
+            requestsMethod: $this->getEndpoint()->getTable()->getRequestsMethod(),
+        );
+        $response = $this->getHttpClient()->sendRequest($request);
+
+        return $this->deserialize($response->data, TableDTO::class, $response->etag);
+    }
+
     /**
      * @return TableDTO[]
      */
