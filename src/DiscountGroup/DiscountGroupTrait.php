@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace BMM\DotyposSdk\DiscountGroup;
 
 use BMM\DotyposSdk\DiscountGroup\DTO\DiscountGroupDTO;
+use BMM\DotyposSdk\DiscountGroup\ValueObject\DiscountGroupPatchVO;
 use BMM\DotyposSdk\DiscountGroup\ValueObject\DiscountGroupVO;
 use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\FilterVO;
 use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\PaginationVO;
@@ -115,6 +116,24 @@ trait DiscountGroupTrait
         $response = $this->getHttpClient()->sendRequest($request);
 
         return $this->deserializeMany($response->data, DiscountGroupDTO::class, $response->etag);
+    }
+
+    /**
+     * Partially updates a discount group — only the fields set on `$payload` are
+     * sent; unset (`null`) fields are left untouched on the server.
+     */
+    public function patchDiscountGroup(int $id, DiscountGroupPatchVO $payload, string $eTag): DiscountGroupDTO
+    {
+        $request = new RequestVO(
+            uri: $this->getEndpoint()->patchDiscountGroup()->getUrl(),
+            path: $this->getEndpoint()->patchDiscountGroup()->getPath() . '/' . $id,
+            requestsMethod: $this->getEndpoint()->patchDiscountGroup()->getRequestsMethod(),
+            data: $this->serialize($payload),
+            eTag: $eTag
+        );
+        $response = $this->getHttpClient()->sendRequest($request);
+
+        return $this->deserialize($response->data, DiscountGroupDTO::class, $response->etag);
     }
 
     public function deleteDiscountGroup(int $id): DiscountGroupDTO
