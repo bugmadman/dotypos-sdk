@@ -17,6 +17,8 @@ final readonly class RequestVO
         private ?PaginationVO $pagination = null,
         private ?FilterVO $filter = null,
         private ?SortVO $sort = null,
+        private ?string $namedFilter = null,
+        private ?string $include = null,
     ) {
     }
 
@@ -58,5 +60,15 @@ final readonly class RequestVO
     public function getSort(): ?SortVO
     {
         return $this->sort;
+    }
+
+    public function getNamedFilter(): ?string
+    {
+        return $this->namedFilter;
+    }
+
+    public function getInclude(): ?string
+    {
+        return $this->include;
     }
 }
