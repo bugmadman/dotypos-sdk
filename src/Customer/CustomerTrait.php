@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace BMM\DotyposSdk\Customer;
 
 use BMM\DotyposSdk\Customer\DTO\CustomerDTO;
+use BMM\DotyposSdk\Customer\ValueObject\CustomerPatchVO;
 use BMM\DotyposSdk\Customer\ValueObject\CustomerVO;
 use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\FilterVO;
 use BMM\DotyposSdk\Infrastructure\HttpClient\ValueObject\PaginationVO;
@@ -140,6 +141,30 @@ trait CustomerTrait
         $response = $this->getHttpClient()->sendRequest($request);
 
         return $this->deserializeMany($response->data, CustomerDTO::class, $response->etag);
+    }
+
+    /**
+     * Partially updates a customer — only the fields set on `$payload` are sent;
+     * unset (`null`) fields are left untouched on the server.
+     *
+     * @param int $id The ID of the customer to update.
+     * @param CustomerPatchVO $payload The fields to change.
+     * @param string $eTag The ETag header value used for optimistic concurrency control (required for PATCH).
+     * @return CustomerDTO The deserialized response data as a CustomerDTO object.
+     * @throws \Exception
+     */
+    public function patchCustomer(int $id, CustomerPatchVO $payload, string $eTag): CustomerDTO
+    {
+        $request = new RequestVO(
+            uri: $this->getEndpoint()->patchCustomer()->getUrl(),
+            path: $this->getEndpoint()->patchCustomer()->getPath() . '/' . $id,
+            requestsMethod: $this->getEndpoint()->patchCustomer()->getRequestsMethod(),
+            data: $this->serialize($payload),
+            eTag: $eTag
+        );
+        $response = $this->getHttpClient()->sendRequest($request);
+
+        return $this->deserialize($response->data, CustomerDTO::class, $response->etag);
     }
 
     /**
